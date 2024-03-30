@@ -1,0 +1,302 @@
+@use "../abstracts";
+
+.form-control {
+    --width-icon: 40px;
+    --width-vartical-line: 3px;
+    --min-height-input: 35px;
+
+    margin-bottom: 8px;
+    caret-color: var(--primary-color);
+
+    &:focus-within:not(.form-control__radio, .form-control__checkbox) .form-label {
+        color: var(--primary-color);
+    }
+
+    .form-label {
+        display: inline-block;
+        padding-bottom: 6px;
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: var(--form-label-color);
+        position: relative;
+
+        &.required::after {
+            color: #fd4646;
+            content: "❪*❫";
+            font-size: 1.1rem;
+            margin-left: 2px;
+            position: relative;
+            top: -3px;
+        }
+    }
+    .form-input,
+    .date-control {
+        display: block;
+        width: 100%;
+        min-height: var(--min-height-input);
+        padding: 7px 10px;
+        font-size: 1.4rem;
+        color: #555;
+        outline: none;
+        background-color: var(--form-control-color);
+        border: 1px solid transparent;
+        border-radius: 0 4px 4px 0;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px;
+
+        @include abstracts.screen(md) {
+            font-size: 1.6rem;
+            padding: 6px 10px;
+        }
+
+        &:focus {
+            border-bottom-color: var(--primary-color);
+            border-bottom-right-radius: 0;
+        }
+
+        &:focus-within {
+            ~ .icon-left,
+            ~ .icon-right {
+                border-bottom-color: var(--primary-color);
+            }
+        }
+    }
+
+    .textbox-control,
+    .textarea-control,
+    .date-control {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: var(--width-vartical-line);
+            height: 100%;
+            min-height: var(--min-height-input);
+            background-color: var(--primary-color);
+        }
+
+        &:has(.icon-left) .form-input {
+            padding-left: calc(var(--width-icon) + 10px);
+        }
+        &:has(.icon-right) .form-input {
+            padding-right: calc(var(--width-icon) + 10px);
+        }
+        &:has(.icon-eye) .form-input {
+            padding-right: var(--width-icon);
+        }
+        &:has(.icon-eye):has(.icon-right) .form-input {
+            padding-right: calc(var(--width-icon) * 2);
+        }
+
+        .icon-left,
+        .icon-right,
+        .icon-eye {
+            position: absolute;
+            top: 0;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid transparent;
+            color: #555;
+            width: var(--width-icon);
+            height: 100%;
+        }
+        .icon-left {
+            left: 0;
+            margin-left: var(--width-vartical-line);
+            background: #f7c79d;
+        }
+        .icon-right {
+            right: 0;
+            background: #f7c79d;
+            border-radius: 0 4px 4px 0;
+        }
+        .icon-eye {
+            right: 0;
+            cursor: pointer;
+        }
+        &:has(.icon-right) .icon-eye {
+            right: var(--width-icon);
+        }
+    }
+
+    .form-error {
+        min-height: 12px;
+        margin-top: 2px;
+        color: #fd4646;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    //Dropdown
+    .select-control {
+        .react-select__control {
+            min-height: var(--min-height-input) !important;
+            color: var(--black) !important;
+            background-color: var(--form-control-color) !important;
+            border: none !important;
+            border-left: var(--width-vartical-line) solid var(--primary-color) !important;
+            border-radius: 0 4px 4px 0 !important;
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px !important;
+        }
+        .react-select__input-container {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .react-select__value-container {
+            margin: 0 !important;
+            padding: 0 !important;
+            padding-left: 10px !important;
+            font-size: 1.4rem;
+        }
+        .react-select__menu {
+            margin: 0 !important;
+            color: var(--black) !important;
+        }
+        .react-select__option {
+            font-size: 1.4rem;
+        }
+        .react-select__option--is-focused {
+            background-color: #ea7f2330;
+        }
+        .react-select__option--is-selected {
+            background-color: var(--primary-color) !important;
+        }
+    }
+
+    //Radio
+    .radio-control {
+        & + .radio-control {
+            margin-top: 5px;
+        }
+
+        label {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            line-height: 20px;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        label::before,
+        label::after {
+            content: "";
+            display: inline-block;
+        }
+
+        label::before {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+            background-color: #fff;
+            border: 1px solid #ababab;
+            border-radius: 50%;
+            transition-property: border-color;
+            transition-duration: 200ms;
+        }
+        label::after {
+            transition-property: background-color;
+            transition-duration: 200ms;
+        }
+
+        [type="radio"] {
+            display: none;
+        }
+
+        [type="radio"]:checked ~ label::before {
+            border-color: var(--primary-color);
+        }
+
+        [type="radio"]:checked ~ label::after {
+            position: absolute;
+            top: 6px;
+            left: 3px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+    }
+
+    //Checkbox
+    .checkbox-control {
+        & + .checkbox-control {
+            margin-top: 5px;
+        }
+
+        label {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            line-height: 20px;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        label::before,
+        label::after {
+            content: "";
+            display: inline-block;
+        }
+
+        label::before {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+            background-color: #fff;
+            border: 1px solid #ababab;
+            border-radius: 3px;
+            transition-property: border-color, background-color;
+            transition-duration: 200ms;
+        }
+
+        [type="checkbox"] {
+            display: none;
+        }
+
+        [type="checkbox"]:checked ~ label::before {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+        }
+
+        [type="checkbox"]:checked ~ label::after {
+            position: absolute;
+            top: 6px;
+            left: 3px;
+            width: 8px;
+            height: 5px;
+            border-left: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            rotate: -45deg;
+        }
+    }
+
+    //Datepicker
+    .date-control {
+        padding: 0;
+        width: 200px;
+        position: relative;
+        border: none;
+
+        .react-datepicker-wrapper {
+            width: 100%;
+
+            input {
+                cursor: pointer;
+                width: 100%;
+                padding: 7px 10px;
+            }
+        }
+
+        .react-datepicker__calendar-icon {
+            cursor: pointer;
+            position: absolute;
+            top: 4px;
+            right: 4px;
+        }
+    }
+}

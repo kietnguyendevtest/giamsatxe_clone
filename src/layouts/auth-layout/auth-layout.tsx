@@ -4,10 +4,10 @@ interface Props {
     children?: React.ReactNode
 }
 
-function AuthLayout({ children }: Props) {
+function AuthLayout(props: Props) {
     return (
         <>
-            {children}
+            {props.children}
             <Footer />
         </>
     );

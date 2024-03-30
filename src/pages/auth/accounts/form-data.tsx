@@ -3,7 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Account as AccountType } from "~/types/account-type";
 import { accountSchema } from "~/utils/rules";
-import { TextBox } from "~/components/controls";
+import { Button, TextBox, Textarea } from "~/components/controls";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 type TFormData = AccountType;
@@ -21,6 +22,8 @@ function FormData(props: IProps) {
    const handleSubmit = (values: TFormData) => {
       onSubmit && onSubmit(values);
    }
+
+   console.log("formRHF", formRHF.formState);
 
    return (
       <div>
@@ -41,17 +44,32 @@ function FormData(props: IProps) {
             />
             <p>{formRHF.formState.errors.Email?.message}</p> */}
 
-            <TextBox
+            <Textarea
+               formRHF={formRHF}
                name='Email'
-               formRHF={formRHF}
+               label="Email"
             />
 
             <TextBox
-               name='UserName'
                formRHF={formRHF}
+               name='UserName'
+               label="User name"
             />
 
-            <button type="submit">Submit</button>
+            <Textarea
+               formRHF={formRHF}
+               name='SoDienThoai'
+               label="Số điện thoại"
+            />
+
+            <Button
+               variant="contained"
+               type='submit'
+               //disabled={!formRHF.formState.isValid}
+               leftIcon={<FontAwesomeIcon icon="fa-solid fa-circle-check" />}
+            >
+               Submit
+            </Button>
          </form>
       </div>
    );

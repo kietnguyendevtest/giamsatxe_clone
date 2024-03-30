@@ -9,7 +9,7 @@ interface Props {
     children?: React.ReactNode
 }
 
-function MainLayout({ children }: Props) {
+function MainLayout(props: Props) {
     const { groupRoles, reset } = useContext(AppContext)
     const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ function MainLayout({ children }: Props) {
                     </ul>
                 </nav>
             </aside>
-            {children}
+            {props.children}
             <Footer />
         </>
     );
