@@ -1,10 +1,10 @@
 import Footer from '~/components/footer';
 
-interface Props {
+interface IProps {
     children?: React.ReactNode
 }
 
-function AuthLayout(props: Props) {
+function AuthLayout(props: IProps) {
     return (
         <>
             {props.children}

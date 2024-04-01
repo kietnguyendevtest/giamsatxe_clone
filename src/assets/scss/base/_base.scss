@@ -1,3 +1,9 @@
+@import "/src/assets/fonts/stylesheet.css";
+
+:root {
+    --font-family-primary: Glypha VO;
+}
+
 *,
 ::before,
 ::after {
@@ -19,7 +25,7 @@ body {
 
 body {
     font-size: 1.6rem;
-    font-family: system-ui, sans-serif;
+    font-family: var(--font-family-primary), sans-serif !important;
     color: var(--text-color);
     background: var(--body-bg);
 }

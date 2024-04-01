@@ -5,11 +5,11 @@ import { AppContext } from '~/contexts/app-context';
 import path from '~/constants/path';
 import Footer from '~/components/footer';
 
-interface Props {
+interface IProps {
     children?: React.ReactNode
 }
 
-function MainLayout(props: Props) {
+function MainLayout(props: IProps) {
     const { groupRoles, reset } = useContext(AppContext)
     const navigate = useNavigate();
 

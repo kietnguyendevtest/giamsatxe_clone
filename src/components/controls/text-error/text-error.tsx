@@ -1,9 +1,9 @@
 
-interface Props {
+interface IProps {
     children?: React.ReactNode
 }
 
-function TextError(props: Props) {
+function TextError(props: IProps) {
     return (
         <div className='form-error'>
             {props.children}
