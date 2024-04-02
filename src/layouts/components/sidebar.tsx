@@ -7,7 +7,7 @@ import { AppContext } from '~/contexts/app-context';
 import path from '~/constants/path';
 
 function Sidebar() {
-   const { groupRoles } = useContext(AppContext);
+   const { groupRoles, menuRoles } = useContext(AppContext);
 
    const [collapsed] = useState(false);
 

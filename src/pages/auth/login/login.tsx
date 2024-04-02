@@ -31,13 +31,19 @@ function Login() {
       loginMutation.mutate(values, {
          onSuccess: (data) => {
             console.log("handleSubmitLogin: ", data);
-            setIsAuthenticated(true);
 
-            const groupRoles: any[] = data.data.Result?.NhomQuyen || [];
+            if (data.data.StatusCode === 200) {
+               setIsAuthenticated(true);
 
-            setGroupRoles(groupRoles)
+               const groupRoles: any[] = data.data.Result?.NhomQuyen || [];
 
-            navigate('/')
+               setGroupRoles(groupRoles)
+
+               navigate('/')
+            } else {
+               alert(data.data.Message)
+            }
+
          },
          onError: (error) => {
             alert(error)

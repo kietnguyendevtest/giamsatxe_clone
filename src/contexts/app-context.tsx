@@ -5,8 +5,9 @@ interface AppContextInterface {
    isAuthenticated: boolean;
    setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 
-   groupRoles: any;
+   groupRoles: [];
    setGroupRoles: React.Dispatch<React.SetStateAction<any>>;
+   menuRoles: [],
 
    reset: () => void;
 }
@@ -17,6 +18,7 @@ const initialAppContext: AppContextInterface = {
 
    groupRoles: [],
    setGroupRoles: () => null,
+   menuRoles: [],
 
    reset: () => null
 }
@@ -26,7 +28,8 @@ export const AppContext = createContext<AppContextInterface>(initialAppContext)
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialAppContext.isAuthenticated);
 
-   const [groupRoles, setGroupRoles] = useState<any>(initialAppContext.groupRoles);
+   const [groupRoles, setGroupRoles] = useState<[]>(initialAppContext.groupRoles);
+   const [menuRoles] = useState<[]>(initialAppContext.menuRoles);
 
    const reset = () => {
       setIsAuthenticated(false);
@@ -41,6 +44,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
             groupRoles,
             setGroupRoles,
+            menuRoles,
 
             reset
          }}
