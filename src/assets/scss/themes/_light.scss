@@ -1,10 +1,13 @@
 html {
-    --white: #fff;
-    --black: #333;
-
-    --primary-color: #ea7f23;
     --text-color: #1a162e;
-    --body-bg: #f2f4f7;
+    --body-bg: #f5f5f5;
+
+    /// Layout Header
+    --header-layout-logo: url("/src/assets/images/vasg_logo_white.png");
+    --header-layout-bg: linear-gradient(#f5f5f5, #fff);
+
+    /// Layout Sidebar
+    --sidebar-layout-bg: #fdfdfd;
 
     --form-control-color: #fff;
     --form-label-color: #5f687b;

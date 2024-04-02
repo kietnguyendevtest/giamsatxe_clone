@@ -2,6 +2,13 @@ html.dark {
     --text-color: #ebebeb;
     --body-bg: #292e39;
 
+    /// Layout Header
+    --header-layout-logo: url("/src/assets/images/vasg_logo_black.png");
+    --header-layout-bg: linear-gradient(#171c28, #171c28ad);
+
+    /// Layout Sidebar
+    --sidebar-layout-bg: linear-gradient(#171c28, #171c28ad);
+
     --form-control-color: #ebebeb;
     --form-label-color: #ebebeb;
 

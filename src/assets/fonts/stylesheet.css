@@ -1,8 +1,8 @@
 /* =============================== Glypha VO =================================== */
 @font-face {
     font-family: 'Glypha VO';
-    src: url('/assets/fonts/GlyphaVO/GlyphaVO.woff2') format('woff2'),
-        url('/assets/fonts/GlyphaVO/GlyphaVO.woff') format('woff');
+    src: url('./GlyphaVO/GlyphaVO.woff2') format('woff2'),
+        url('./GlyphaVO/GlyphaVO.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -10,8 +10,8 @@
 
 @font-face {
     font-family: 'Glypha VO';
-    src: url('/assets/fonts/GlyphaVO/GlyphaVO-BoldItalic.woff2') format('woff2'),
-        url('/assets/fonts/GlyphaVO/GlyphaVO-BoldItalic.woff') format('woff');
+    src: url('./GlyphaVO/GlyphaVO-BoldItalic.woff2') format('woff2'),
+        url('./GlyphaVO/GlyphaVO-BoldItalic.woff') format('woff');
     font-weight: bold;
     font-style: italic;
     font-display: swap;
@@ -19,8 +19,8 @@
 
 @font-face {
     font-family: 'Glypha VO';
-    src: url('/assets/fonts/GlyphaVO/GlyphaVO-Italic.woff2') format('woff2'),
-        url('/assets/fonts/GlyphaVO/GlyphaVO-Italic.woff') format('woff');
+    src: url('./GlyphaVO/GlyphaVO-Italic.woff2') format('woff2'),
+        url('./GlyphaVO/GlyphaVO-Italic.woff') format('woff');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
@@ -28,8 +28,8 @@
 
 @font-face {
     font-family: 'Glypha VO';
-    src: url('/assets/fonts/GlyphaVO/GlyphaVO-Bold.woff2') format('woff2'),
-        url('/assets/fonts/GlyphaVO/GlyphaVO-Bold.woff') format('woff');
+    src: url('./GlyphaVO/GlyphaVO-Bold.woff2') format('woff2'),
+        url('./GlyphaVO/GlyphaVO-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;

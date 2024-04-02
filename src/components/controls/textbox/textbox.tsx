@@ -39,7 +39,7 @@ function TextBox(props: IProps) {
             {rightIcon && <span className="icon-right">{rightIcon}</span>}
             {
                eyeIcon && <span className="icon-eye" onClick={() => setIsShowHidePass(!isShowHidePass)}>
-                  {isShowHidePass ? <FontAwesomeIcon icon="fa-solid fa-eye" /> : <FontAwesomeIcon icon="fa-solid fa-eye-slash" />}
+                  {isShowHidePass ? <FontAwesomeIcon icon={['fas', 'eye']} /> : <FontAwesomeIcon icon={['fas', 'eye']} />}
                </span>
             }
          </div>

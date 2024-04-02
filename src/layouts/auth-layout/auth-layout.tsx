@@ -1,4 +1,4 @@
-import Footer from '~/components/footer';
+import { Footer } from "~/layouts/components";
 
 interface IProps {
     children?: React.ReactNode

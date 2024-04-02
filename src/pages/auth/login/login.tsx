@@ -59,7 +59,7 @@ function Login() {
                   value={'admin'}
                   name='username'
                   label="Tài khoản"
-                  leftIcon={<FontAwesomeIcon icon="fa-solid fa-user" />}
+                  leftIcon={<FontAwesomeIcon icon={['fas', 'user']} />}
                />
 
                <TextBox
@@ -68,7 +68,7 @@ function Login() {
                   label="Mật khẩu"
                   type="password"
                   eyeIcon
-                  leftIcon={<FontAwesomeIcon icon="fa-solid fa-lock" />}
+                  leftIcon={<FontAwesomeIcon icon={['fas', 'lock']} />}
                />
 
                <div className="login-btn">
@@ -76,7 +76,7 @@ function Login() {
                      variant="contained"
                      type='submit'
                      //disabled={!formRHF.formState.isValid}
-                     leftIcon={<FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />}
+                     leftIcon={<FontAwesomeIcon icon={['fas', 'right-to-bracket']} />}
                      size='large'
                   >
                      Đăng nhập

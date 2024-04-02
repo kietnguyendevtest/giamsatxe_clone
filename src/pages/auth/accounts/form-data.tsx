@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Account as AccountType } from "~/types/account-type";
 import { accountSchema } from "~/utils/rules";
-import { Button, TextBox, Textarea } from "~/components/controls";
+import { Button, SelectBox, TextBox, Textarea } from "~/components/controls";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -44,29 +44,54 @@ function FormData(props: IProps) {
             />
             <p>{formRHF.formState.errors.Email?.message}</p> */}
 
-            <Textarea
+            <TextBox
                formRHF={formRHF}
                name='Email'
                label="Email"
             />
 
-            <TextBox
+            <Textarea
                formRHF={formRHF}
                name='UserName'
                label="User name"
             />
 
-            <Textarea
+            <TextBox
                formRHF={formRHF}
                name='SoDienThoai'
                label="Số điện thoại"
+            />
+
+            {/* <SelectBox
+               formRHF={formRHF}
+               name='role1'
+               label="Role 1"
+               required
+               options={[
+                  { value: "", label: "--All--" },
+                  { value: "strawberry", label: "Strawberry" },
+                  { value: "vanilla", label: "Vanilla" },
+               ]}
+            /> */}
+
+            <SelectBox
+               formRHF={formRHF}
+               name='role2'
+               label="Role 2"
+               required
+               multi
+               options={[
+                  { value: "1", label: "One" },
+                  { value: "2", label: "Two" },
+                  { value: "3", label: "Three" },
+               ]}
             />
 
             <Button
                variant="contained"
                type='submit'
                //disabled={!formRHF.formState.isValid}
-               leftIcon={<FontAwesomeIcon icon="fa-solid fa-circle-check" />}
+               leftIcon={<FontAwesomeIcon icon={['fas', 'circle-check']} />}
             >
                Submit
             </Button>

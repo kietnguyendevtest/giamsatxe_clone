@@ -1,50 +1,25 @@
-import { useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-
-import { AppContext } from '~/contexts/app-context';
-import path from '~/constants/path';
-import Footer from '~/components/footer';
+import { Header, Sidebar, Footer } from '~/layouts/components';
 
 interface IProps {
     children?: React.ReactNode
 }
 
 function MainLayout(props: IProps) {
-    const { groupRoles, reset } = useContext(AppContext)
-    const navigate = useNavigate();
-
-    console.log("MainLayout groupRoles", groupRoles);
-
-    const handeSubmitLogout = () => {
-        reset();
-        navigate('/login');
-    }
-
     return (
         <>
-            <header>Header here
-                <button onClick={handeSubmitLogout}>Logout</button>
+            <Header />
 
-            </header>
-            <aside>
-                <nav>
-                    <ul>
-                        <li>
-                            <NavLink to={path.home}>Home</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={path.todo}>Todo</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={path.accounts}>Accounts</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={path.roles}>Roles</NavLink>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
-            {props.children}
+            <div className="wrapper">
+
+                <div className="aside-wrapper">
+                    <Sidebar />
+                </div>
+
+                <div className="content-wrapper">
+                    {props.children}
+                </div>
+
+            </div>
             <Footer />
         </>
     );

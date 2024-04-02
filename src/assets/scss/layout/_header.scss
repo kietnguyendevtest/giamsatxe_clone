@@ -1,0 +1,26 @@
+.header-container {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   z-index: 999999999;
+   display: flex;
+   justify-content: space-between;
+   height: var(--header-layout-height);
+   background: var(--header-layout-bg);
+   color: var(--text-color);
+}
+
+.header-left {
+   margin-left: 75px;
+   display: flex;
+   align-items: center;
+
+   .header-left--logo {
+      width: 100px;
+      height: 65px;
+      background-image: var(--header-layout-logo);
+      background-size: contain;
+      background-repeat: no-repeat;
+   }
+}

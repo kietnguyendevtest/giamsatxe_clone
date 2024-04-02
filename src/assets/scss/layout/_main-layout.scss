@@ -1,0 +1,10 @@
+.wrapper {
+   display: flex;
+   min-height: calc(100vh - var(--header-layout-height) - var(--footer-layout-height));
+   margin-top: var(--header-layout-height);
+}
+
+.content-wrapper {
+   flex: 1;
+   height: 150vh;
+}

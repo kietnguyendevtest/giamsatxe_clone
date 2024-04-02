@@ -1,0 +1,8 @@
+.aside-wrapper {
+   overflow-y: auto;
+   background: var(--sidebar-layout-bg);
+
+   .ps-sidebar-container {
+      background: inherit;
+   }
+}
