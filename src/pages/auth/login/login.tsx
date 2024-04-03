@@ -16,7 +16,7 @@ import { Button, TextBox } from "~/components/controls";
 export type TFormData = AuthLoginType
 
 function Login() {
-   const { setIsAuthenticated, setGroupRoles } = useContext(AppContext)
+   const { setIsAuthenticated, setGroupRoles, setMenuRoles } = useContext(AppContext)
    const navigate = useNavigate();
 
    const formRHF = useForm<TFormData>({
@@ -35,9 +35,10 @@ function Login() {
             if (data.data.StatusCode === 200) {
                setIsAuthenticated(true);
 
-               const groupRoles: any[] = data.data.Result?.NhomQuyen || [];
+               //const groupRoles: any[] = data.data.Result?.NhomQuyen || [];
 
-               setGroupRoles(groupRoles)
+               setGroupRoles(data.data.Result?.NhomQuyen || []);
+               setMenuRoles(data.data.Result?.Menu || [])
 
                navigate('/')
             } else {

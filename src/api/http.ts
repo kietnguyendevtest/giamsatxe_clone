@@ -20,7 +20,7 @@ class Http {
       this.refreshTokenRequest = null
 
       this.instance = axios.create({
-         baseURL: config.baseUrl,
+         baseURL: config.URL_BACKEND,
          timeout: 30000,
          headers: {
             'Content-Type': 'application/json',

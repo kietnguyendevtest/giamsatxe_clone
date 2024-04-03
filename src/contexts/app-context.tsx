@@ -1,13 +1,15 @@
 import { createContext, useState } from 'react'
+import { Menu, NhomQuyen } from '~/types/auth-type';
 import { getAccessTokenFromLS } from '~/utils'
 
 interface AppContextInterface {
    isAuthenticated: boolean;
    setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 
-   groupRoles: [];
+   groupRoles: NhomQuyen[];
    setGroupRoles: React.Dispatch<React.SetStateAction<any>>;
-   menuRoles: [],
+   menuRoles: Menu[],
+   setMenuRoles: React.Dispatch<React.SetStateAction<any>>;
 
    reset: () => void;
 }
@@ -19,6 +21,7 @@ const initialAppContext: AppContextInterface = {
    groupRoles: [],
    setGroupRoles: () => null,
    menuRoles: [],
+   setMenuRoles: () => null,
 
    reset: () => null
 }
@@ -28,8 +31,8 @@ export const AppContext = createContext<AppContextInterface>(initialAppContext)
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialAppContext.isAuthenticated);
 
-   const [groupRoles, setGroupRoles] = useState<[]>(initialAppContext.groupRoles);
-   const [menuRoles] = useState<[]>(initialAppContext.menuRoles);
+   const [groupRoles, setGroupRoles] = useState<NhomQuyen[]>(initialAppContext.groupRoles);
+   const [menuRoles, setMenuRoles] = useState<Menu[]>(initialAppContext.menuRoles);
 
    const reset = () => {
       setIsAuthenticated(false);
@@ -45,6 +48,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
             groupRoles,
             setGroupRoles,
             menuRoles,
+            setMenuRoles,
 
             reset
          }}
