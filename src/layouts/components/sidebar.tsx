@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 // import CryptoJS from "crypto-js";
 
 import { Sidebar as Aside, Menu, SubMenu, MenuItem } from "react-pro-sidebar";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { AppContext } from '~/contexts/app-context';
 import path from '~/constants/path';
@@ -28,7 +27,7 @@ function Sidebar() {
 
             <MenuItem
                component={<NavLink to={path.accounts} />}
-               icon={<FontAwesomeIcon icon={['fas', 'gear']} />}
+               icon={<i className="fa-solid fa-gear"></i>}
             >
                Accounts
             </MenuItem>

@@ -4,7 +4,6 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { isMobile } from 'react-device-detect';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import images from '~/assets/images/index';
 import { AppContext } from "~/contexts/app-context";
@@ -66,7 +65,7 @@ function Login() {
                   value={'admin'}
                   name='username'
                   label="Tài khoản"
-                  leftIcon={<FontAwesomeIcon icon={['fas', 'user']} />}
+                  leftIcon={<i className="fa-solid fa-user"></i>}
                />
 
                <TextBox
@@ -75,7 +74,7 @@ function Login() {
                   label="Mật khẩu"
                   type="password"
                   eyeIcon
-                  leftIcon={<FontAwesomeIcon icon={['fas', 'lock']} />}
+                  leftIcon={<i className="fa-solid fa-lock"></i>}
                />
 
                <div className="login-btn">
@@ -83,7 +82,7 @@ function Login() {
                      variant="contained"
                      type='submit'
                      //disabled={!formRHF.formState.isValid}
-                     leftIcon={<FontAwesomeIcon icon={['fas', 'right-to-bracket']} />}
+                     leftIcon={<i className="fa-solid fa-right-to-bracket"></i>}
                      size='large'
                   >
                      Đăng nhập

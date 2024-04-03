@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Account as AccountType } from "~/types/account-type";
 import { accountSchema } from "~/utils/rules";
 import { Button, SelectBox, TextBox, Textarea } from "~/components/controls";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 type TFormData = AccountType;
@@ -91,7 +90,7 @@ function FormData(props: IProps) {
                variant="contained"
                type='submit'
                //disabled={!formRHF.formState.isValid}
-               leftIcon={<FontAwesomeIcon icon={['fas', 'circle-check']} />}
+               leftIcon={<i className="fa-solid fa-circle-check"></i>}
             >
                Submit
             </Button>

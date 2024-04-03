@@ -1,6 +1,5 @@
 import { InputHTMLAttributes, useState } from "react"
 import { UseFormReturn } from "react-hook-form"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import TextError from '~/components/controls/text-error';
 
@@ -39,7 +38,7 @@ function TextBox(props: IProps) {
             {rightIcon && <span className="icon-right">{rightIcon}</span>}
             {
                eyeIcon && <span className="icon-eye" onClick={() => setIsShowHidePass(!isShowHidePass)}>
-                  {isShowHidePass ? <FontAwesomeIcon icon={['fas', 'eye']} /> : <FontAwesomeIcon icon={['fas', 'eye']} />}
+                  {isShowHidePass ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye"></i>}
                </span>
             }
          </div>
