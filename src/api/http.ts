@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance } from 'axios';
 import { toast } from 'react-toastify';
 
 import config from '~/constants/config';
-// import { clearLS, getAccessTokenFromLS, getRefreshTokenFromLS, setAccessTokenToLS, setRefreshTokenToLS } from '~/utils';
+import { storage } from '~/utils';
 import { URL_LOGIN, URL_REFRESH_TOKEN } from './auth-api';
 import { AuthResponse, RefreshTokenReponse } from '~/types/auth-type';
 import HttpStatusCode from '~/constants/http-status-code-enum';
@@ -15,8 +15,8 @@ class Http {
    private refreshTokenRequest: Promise<string> | null
 
    constructor() {
-      this.accessToken = localStorage.getItem('access_token') || "";// getAccessTokenFromLS()
-      this.refreshToken = localStorage.getItem('refresh_token') || '';//getRefreshTokenFromLS()
+      this.accessToken = storage.getAccessToken();
+      this.refreshToken = storage.getRefreshToken();
       this.refreshTokenRequest = null
 
       this.instance = axios.create({
@@ -49,15 +49,12 @@ class Http {
                this.accessToken = data.Result?.TaiKhoan.Token || "";
                this.refreshToken = data.Result?.TaiKhoan.RefreshToken || "";
 
-               // setAccessTokenToLS(this.accessToken);
-               // setRefreshTokenToLS(this.refreshToken);
-
-               localStorage.setItem('access_token', this.accessToken);
-               localStorage.setItem('refresh_token', this.refreshToken);
-               localStorage.setItem('profile', JSON.stringify(data.Result?.TaiKhoan));
-               localStorage.setItem('group_role', JSON.stringify(data.Result?.NhomQuyen));
-               localStorage.setItem('menu_role', JSON.stringify(data.Result?.Menu));
-               localStorage.setItem('set_role', JSON.stringify(data.Result?.PhanQuyen));
+               storage.setAccessToken(this.accessToken);
+               storage.setRefreshToken(this.refreshToken);
+               storage.setGroupRole(JSON.stringify(data.Result?.NhomQuyen));
+               storage.setMenuRole(JSON.stringify(data.Result?.Menu));
+               storage.setSetRole(JSON.stringify(data.Result?.PhanQuyen));
+               storage.setProfile(JSON.stringify(data.Result?.TaiKhoan));
             }
             return response
          },
@@ -105,9 +102,7 @@ class Http {
                 ==> thì tiến hành xóa local storage và toast message
                */
 
-               //clearLS()
-               localStorage.clear();
-
+               storage.clearAll();
                this.accessToken = ''
                this.refreshToken = ''
                window.location.href = '';
@@ -126,12 +121,12 @@ class Http {
          })
          .then((res) => {
             const access_token = res.data.Result?.Token || "";
-            localStorage.setItem('access_token', access_token);
+            storage.setAccessToken(access_token);
             this.accessToken = access_token;
             return access_token;
          })
          .catch((error) => {
-            localStorage.clear();
+            storage.clearAll();
             this.accessToken = '';
             this.refreshToken = '';
             throw error;

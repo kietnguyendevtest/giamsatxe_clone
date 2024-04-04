@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { useRouteElements } from "./hooks";
 
 import { AppContext } from "~/contexts/app-context";
+import { storage } from "./utils";
 import Toastify from "~/components/toastify";
 import "~/assets/scss/main.scss";
 
@@ -11,7 +12,7 @@ function App() {
    const routeElements = useRouteElements();
 
    useEffect(() => {
-      if (localStorage.getItem('access_token')) {
+      if (storage.getAccessToken()) {
          refresh();
       }
    }, []);

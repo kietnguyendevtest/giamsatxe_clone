@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react'
 import { Menu, NhomQuyen, PhanQuyen } from '~/types/auth-type';
+import { storage } from '~/utils';
 
 interface AppContextInterface {
    isAuthenticated: boolean;
@@ -17,7 +18,7 @@ interface AppContextInterface {
 }
 
 const initialAppContext: AppContextInterface = {
-   isAuthenticated: Boolean(localStorage.getItem('access_token')),
+   isAuthenticated: Boolean(storage.getAccessToken()),
    setIsAuthenticated: () => null,
 
    groupRole: [],
@@ -41,14 +42,14 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
    const reset = () => {
       setIsAuthenticated(false);
-      localStorage.clear();
+      storage.clearAll();
    }
 
    const refresh = () => {
 
-      setGroupRole(JSON.parse(localStorage.getItem('group_role') || '[]'));
-      setMenuRole(JSON.parse(localStorage.getItem('menu_role') || '[]'));
-      setSetRole(JSON.parse(localStorage.getItem('set_role') || '[]'));
+      setGroupRole(JSON.parse(storage.getGroupRole()) || []);
+      setMenuRole(JSON.parse(storage.getMenuRole()) || []);
+      setSetRole(JSON.parse(storage.getSetRole()) || []);
    }
 
    return (
