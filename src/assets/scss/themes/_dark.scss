@@ -7,8 +7,12 @@ html.dark {
     --header-layout-bg: linear-gradient(#171c28, #171c28ad);
 
     /// Layout Sidebar
-    --sidebar-layout-bg: linear-gradient(#171c28, #171c28ad);
+    --sidebar-layout-bg: #171c28;
+    --sidebar-border-color: #636363;
+    --sidebar-active-bg: #ff8a283d;
+    --sidebar-hover-bg: transparent;
 
+    ///
     --form-control-color: #dfdfdf;
     --form-label-color: #dfdfdf;
 

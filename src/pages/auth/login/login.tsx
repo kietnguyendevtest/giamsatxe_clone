@@ -5,17 +5,17 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { isMobile } from 'react-device-detect';
 
-import images from '~/assets/images/index';
 import { AppContext } from "~/contexts/app-context";
 import { authApi } from "~/api";
 import { authShema } from "~/utils/rules";
 import { AuthLogin as AuthLoginType } from "~/types/auth-type";
 import { Button, TextBox } from "~/components/controls";
+import images from '~/assets/images/index';
 
 export type TFormData = AuthLoginType
 
 function Login() {
-   const { setIsAuthenticated, setGroupRoles, setMenuRoles } = useContext(AppContext)
+   const { setIsAuthenticated, setGroupRole, setMenuRole } = useContext(AppContext);
    const navigate = useNavigate();
 
    const formRHF = useForm<TFormData>({
@@ -29,21 +29,15 @@ function Login() {
    const handleSubmit = (values: TFormData) => {
       loginMutation.mutate(values, {
          onSuccess: (data) => {
-            console.log("handleSubmitLogin: ", data);
-
             if (data.data.StatusCode === 200) {
                setIsAuthenticated(true);
-
-               //const groupRoles: any[] = data.data.Result?.NhomQuyen || [];
-
-               setGroupRoles(data.data.Result?.NhomQuyen || []);
-               setMenuRoles(data.data.Result?.Menu || [])
+               setGroupRole(data.data.Result?.NhomQuyen || []);
+               setMenuRole(data.data.Result?.Menu || [])
 
                navigate('/')
             } else {
                alert(data.data.Message)
             }
-
          },
          onError: (error) => {
             alert(error)

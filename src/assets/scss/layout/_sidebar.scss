@@ -1,8 +1,98 @@
+@use "../abstracts";
+
 .aside-wrapper {
    overflow-y: auto;
    background: var(--sidebar-layout-bg);
+   border-right: 1px solid var(--sidebar-border-color);
+
+   .ps-sidebar-root {
+      border: none;
+   }
 
    .ps-sidebar-container {
       background: inherit;
    }
+
+   .ps-menuitem-root {
+      border-bottom: 1px solid var(--sidebar-border-color);
+      font-size: 1.3rem;
+   }
+
+   .ps-menu-button {
+      &.active {
+         background: var(--sidebar-active-bg);
+      }
+      &:hover {
+         background-color: var(--sidebar-hover-bg) !important;
+         color: var(--primary-color);
+         transition: 0.1s linear;
+      }
+   }
+
+   .ps-submenu-content {
+      background: transparent;
+      &.ps-open {
+         border-top: 1px solid var(--sidebar-border-color);
+      }
+
+      .ps-menuitem-root:last-child {
+         border: none;
+      }
+   }
+
+   .ps-menu-label {
+      line-height: 50px;
+
+      i {
+         margin-right: 10px;
+      }
+   }
+
+   .ps-menu-icon {
+      margin-right: 0;
+      margin-left: -12px;
+      height: 50px;
+
+      i {
+         line-height: 50px;
+      }
+   }
+
+   .ps-submenu-expand-icon {
+      right: 5px;
+
+      span {
+         border-right: 1px solid currentcolor;
+         border-bottom: 1px solid currentcolor;
+         width: 7px;
+         height: 7px;
+      }
+   }
+
+   .ps-collapsed {
+      width: 50px !important;
+      min-width: 50px !important;
+
+      @include abstracts.screen(md) {
+         width: 0 !important;
+         min-width: 0 !important;
+      }
+
+      .ps-submenu-expand-icon {
+         span {
+            width: 5px;
+            height: 5px;
+         }
+      }
+   }
+}
+
+.btn-collapsed {
+   position: fixed;
+   top: 11px;
+   left: 12px;
+   z-index: 999999999;
+   cursor: pointer;
+   font-size: 3rem;
+   color: var(--text-white);
 }

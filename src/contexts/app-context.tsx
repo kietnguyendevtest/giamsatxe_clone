@@ -1,28 +1,32 @@
 import { createContext, useState } from 'react'
-import { Menu, NhomQuyen } from '~/types/auth-type';
-import { getAccessTokenFromLS } from '~/utils'
+import { Menu, NhomQuyen, PhanQuyen } from '~/types/auth-type';
 
 interface AppContextInterface {
    isAuthenticated: boolean;
    setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 
-   groupRoles: NhomQuyen[];
-   setGroupRoles: React.Dispatch<React.SetStateAction<any>>;
-   menuRoles: Menu[],
-   setMenuRoles: React.Dispatch<React.SetStateAction<any>>;
+   groupRole: NhomQuyen[];
+   menuRole: Menu[],
+   setRole: PhanQuyen[],
 
+   setGroupRole: React.Dispatch<React.SetStateAction<any>>;
+   setMenuRole: React.Dispatch<React.SetStateAction<any>>;
+
+   refresh: () => void;
    reset: () => void;
 }
 
 const initialAppContext: AppContextInterface = {
-   isAuthenticated: Boolean(getAccessTokenFromLS()),
+   isAuthenticated: Boolean(localStorage.getItem('access_token')),
    setIsAuthenticated: () => null,
 
-   groupRoles: [],
-   setGroupRoles: () => null,
-   menuRoles: [],
-   setMenuRoles: () => null,
+   groupRole: [],
+   menuRole: [],
+   setRole: [],
+   setGroupRole: () => null,
+   setMenuRole: () => null,
 
+   refresh: () => null,
    reset: () => null
 }
 
@@ -31,12 +35,20 @@ export const AppContext = createContext<AppContextInterface>(initialAppContext)
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialAppContext.isAuthenticated);
 
-   const [groupRoles, setGroupRoles] = useState<NhomQuyen[]>(initialAppContext.groupRoles);
-   const [menuRoles, setMenuRoles] = useState<Menu[]>(initialAppContext.menuRoles);
+   const [groupRole, setGroupRole] = useState<NhomQuyen[]>(initialAppContext.groupRole);
+   const [menuRole, setMenuRole] = useState<Menu[]>(initialAppContext.menuRole);
+   const [setRole, setSetRole] = useState<PhanQuyen[]>(initialAppContext.setRole);
 
    const reset = () => {
       setIsAuthenticated(false);
       localStorage.clear();
+   }
+
+   const refresh = () => {
+
+      setGroupRole(JSON.parse(localStorage.getItem('group_role') || '[]'));
+      setMenuRole(JSON.parse(localStorage.getItem('menu_role') || '[]'));
+      setSetRole(JSON.parse(localStorage.getItem('set_role') || '[]'));
    }
 
    return (
@@ -45,12 +57,14 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
             isAuthenticated,
             setIsAuthenticated,
 
-            groupRoles,
-            setGroupRoles,
-            menuRoles,
-            setMenuRoles,
+            groupRole,
+            menuRole,
+            setRole,
+            setGroupRole,
+            setMenuRole,
 
-            reset
+            refresh,
+            reset,
          }}
       >
          {children}

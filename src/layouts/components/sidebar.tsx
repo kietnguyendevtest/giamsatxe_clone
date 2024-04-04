@@ -9,71 +9,77 @@ import path from '~/constants/path';
 // import config from '~/constants/config';
 
 function Sidebar() {
-   const { groupRoles, menuRoles } = useContext(AppContext);
+   const { groupRole, menuRole } = useContext(AppContext);
 
-   const [collapsed] = useState(false);
-
-   console.log("------------Sidebar groupRoles", menuRoles);
+   const [collapsed, setCollapsed] = useState(false);
 
    return (
-      <Aside collapsed={collapsed} width="230px">
-         <Menu closeOnClick={true}>
-            <MenuItem
-               component={<NavLink to={path.home} />}
-               icon={<i className="fa-solid fa-house"></i>}
-            >
-               Trang chủ
-            </MenuItem>
+      <>
+         <div
+            className="btn-collapsed"
+            onClick={() => setCollapsed(!collapsed)}
+         >
+            <i className="fa-solid fa-bars"></i>
+         </div>
 
-            <MenuItem
-               component={<NavLink to={path.accounts} />}
-               icon={<i className="fa-solid fa-gear"></i>}
-            >
-               Accounts
-            </MenuItem>
+         <Aside collapsed={collapsed} width="230px">
+            <Menu closeOnClick={true}>
+               <MenuItem
+                  component={<NavLink to={path.home} />}
+                  icon={<i className="fa-solid fa-house"></i>}
+               >
+                  Trang chủ
+               </MenuItem>
 
-            {groupRoles && groupRoles.length > 0
-               && groupRoles.map((item, index) => {
-                  if (menuRoles.filter((i) => i.NhomQuyenId.includes(item.Id)).length > 0) {
-                     return (
-                        <SubMenu
-                           key={`menu-${index}`}
-                           label={item.TenGoi}
-                           icon={<i className={item.Icon}></i>}
-                           title={item.TenGoi}
-                        >
-                           {menuRoles && menuRoles.length > 0
-                              && menuRoles.map((item2, index2) => {
-                                 if (item.Id === item2.NhomQuyenId && item2.IsActived) {
-                                    return (
-                                       <MenuItem
-                                          key={`menusub-${index2}`}
-                                          icon={<i className={item2.Icon} ></i>}
-                                          component={
-                                             <NavLink
-                                                to={`/${item2.Controller}`}
-                                             // onClick={() => {
-                                             //    localStorage.setItem(config.STORAGE_CURRENTURL , CryptoJS.Rabbit.encrypt(`/${item2.Controller}`, config.SECRET_ENCRYPTION));
+               <MenuItem
+                  component={<NavLink to={path.accounts} />}
+                  icon={<i className="fa-solid fa-gear"></i>}
+               >
+                  Accounts
+               </MenuItem>
 
-                                             //    localStorage.setItem(config.STORAGE_CURRENTPAGE, `${item2.TenGoi}`);
+               {groupRole && groupRole.length > 0
+                  && groupRole.map((item, index) => {
+                     if (menuRole.filter((i) => i.NhomQuyenId.includes(item.Id)).length > 0) {
+                        return (
+                           <SubMenu
+                              key={`menu-${index}`}
+                              label={item.TenGoi}
+                              icon={<i className={item.Icon}></i>}
+                              title={item.TenGoi}
+                           >
+                              {menuRole && menuRole.length > 0
+                                 && menuRole.map((item2, index2) => {
+                                    if (item.Id === item2.NhomQuyenId && item2.IsActived) {
+                                       return (
+                                          <MenuItem
+                                             key={`menusub-${index2}`}
+                                             icon={<i className={item2.Icon} ></i>}
+                                             component={
+                                                <NavLink
+                                                   to={`/${item2.Controller}`}
+                                                // onClick={() => {
+                                                //    localStorage.setItem(config.STORAGE_CURRENTURL , CryptoJS.Rabbit.encrypt(`/${item2.Controller}`, config.SECRET_ENCRYPTION));
 
-                                             //    localStorage.setItem(config.STORAGE_CURRENTCONTROLLERNAME, CryptoJS.Rabbit.encrypt(`${item2.ControllerName}`, config.SECRET_ENCRYPTION));
-                                             // }}
-                                             />
-                                          }
-                                          title={item2.TenGoi}
-                                       >
-                                          {item2.TenGoi}
-                                       </MenuItem>
-                                    );
-                                 }
-                              })}
-                        </SubMenu>
-                     );
-                  }
-               })}
+                                                //    localStorage.setItem(config.STORAGE_CURRENTPAGE, `${item2.TenGoi}`);
 
-            {/* <SubMenu label="Test 1" icon={<FontAwesomeIcon icon={['fas', 'gear']} />}>
+                                                //    localStorage.setItem(config.STORAGE_CURRENTCONTROLLERNAME, CryptoJS.Rabbit.encrypt(`${item2.ControllerName}`, config.SECRET_ENCRYPTION));
+                                                // }}
+                                                />
+                                             }
+                                             title={item2.TenGoi}
+                                          >
+                                             {item2.TenGoi}
+                                          </MenuItem>
+                                       );
+                                    }
+                                 })}
+                           </SubMenu>
+                        );
+                     }
+                  })}
+
+               {/* <SubMenu label="Test 1" icon={<FontAwesomeIcon icon={['fas', 'gear']} />}>
                <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />} component={<NavLink to="/ho-so-nhan-su" />}>Test 1.1</MenuItem>
                <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 1.2</MenuItem>
             </SubMenu>
@@ -93,8 +99,9 @@ function Sidebar() {
                   <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.3.2</MenuItem>
                </SubMenu>
             </SubMenu> */}
-         </Menu>
-      </Aside>
+            </Menu>
+         </Aside>
+      </>
    );
 }
 

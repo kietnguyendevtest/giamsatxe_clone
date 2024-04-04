@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance } from 'axios';
 import { toast } from 'react-toastify';
 
 import config from '~/constants/config';
-import { clearLS, getAccessTokenFromLS, getRefreshTokenFromLS, setAccessTokenToLS, setRefreshTokenToLS } from '~/utils';
+// import { clearLS, getAccessTokenFromLS, getRefreshTokenFromLS, setAccessTokenToLS, setRefreshTokenToLS } from '~/utils';
 import { URL_LOGIN, URL_REFRESH_TOKEN } from './auth-api';
 import { AuthResponse, RefreshTokenReponse } from '~/types/auth-type';
 import HttpStatusCode from '~/constants/http-status-code-enum';
@@ -15,8 +15,8 @@ class Http {
    private refreshTokenRequest: Promise<string> | null
 
    constructor() {
-      this.accessToken = getAccessTokenFromLS()
-      this.refreshToken = getRefreshTokenFromLS()
+      this.accessToken = localStorage.getItem('access_token') || "";// getAccessTokenFromLS()
+      this.refreshToken = localStorage.getItem('refresh_token') || '';//getRefreshTokenFromLS()
       this.refreshTokenRequest = null
 
       this.instance = axios.create({
@@ -42,14 +42,22 @@ class Http {
 
       this.instance.interceptors.response.use(
          (response) => {
-            const { url } = response.config
+            const { url } = response.config;
+
             if (url === URL_LOGIN) {
                const data = response.data as AuthResponse;
                this.accessToken = data.Result?.TaiKhoan.Token || "";
                this.refreshToken = data.Result?.TaiKhoan.RefreshToken || "";
 
-               setAccessTokenToLS(this.accessToken)
-               setRefreshTokenToLS(this.refreshToken)
+               // setAccessTokenToLS(this.accessToken);
+               // setRefreshTokenToLS(this.refreshToken);
+
+               localStorage.setItem('access_token', this.accessToken);
+               localStorage.setItem('refresh_token', this.refreshToken);
+               localStorage.setItem('profile', JSON.stringify(data.Result?.TaiKhoan));
+               localStorage.setItem('group_role', JSON.stringify(data.Result?.NhomQuyen));
+               localStorage.setItem('menu_role', JSON.stringify(data.Result?.Menu));
+               localStorage.setItem('set_role', JSON.stringify(data.Result?.PhanQuyen));
             }
             return response
          },
@@ -74,7 +82,6 @@ class Http {
                const config = error.response?.config || {}
                const { url } = config
 
-
                // Trường hợp Token hết hạn và request đó không phải là của request refresh token thì mới tiến hành gọi refresh token
                if (url !== URL_REFRESH_TOKEN && this.accessToken) {
                   // Hạn chế gọi 2 lần handleRefreshToken
@@ -98,7 +105,9 @@ class Http {
                 ==> thì tiến hành xóa local storage và toast message
                */
 
-               clearLS()
+               //clearLS()
+               localStorage.clear();
+
                this.accessToken = ''
                this.refreshToken = ''
                window.location.href = '';
@@ -116,16 +125,16 @@ class Http {
             RefreshToken: this.refreshToken,
          })
          .then((res) => {
-            const access_token = res.data.Result?.Token || ""
-            setAccessTokenToLS(access_token)
-            this.accessToken = access_token
-            return access_token
+            const access_token = res.data.Result?.Token || "";
+            localStorage.setItem('access_token', access_token);
+            this.accessToken = access_token;
+            return access_token;
          })
          .catch((error) => {
-            clearLS()
-            this.accessToken = ''
-            this.refreshToken = ''
-            throw error
+            localStorage.clear();
+            this.accessToken = '';
+            this.refreshToken = '';
+            throw error;
          })
    }
 }
