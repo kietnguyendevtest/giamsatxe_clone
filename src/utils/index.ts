@@ -1,17 +1,17 @@
-import axios, { AxiosError } from 'axios'
-import HttpStatusCode from '~/constants/http-status-code-enum'
+// import axios, { AxiosError } from 'axios'
+// import HttpStatusCode from '~/constants/http-status-code-enum'
 
-export function isAxiosError<T>(error: unknown): error is AxiosError<T> {
-   return axios.isAxiosError(error)
-}
+// export function isAxiosError<T>(error: unknown): error is AxiosError<T> {
+//    return axios.isAxiosError(error)
+// }
 
-export function isAxiosUnprocessableEntityError<FormError>(error: unknown): error is AxiosError<FormError> {
-   return isAxiosError(error) && error.response?.status === HttpStatusCode.UnprocessableEntity
-}
+// export function isAxiosUnprocessableEntityError<FormError>(error: unknown): error is AxiosError<FormError> {
+//    return isAxiosError(error) && error.response?.status === HttpStatusCode.UnprocessableEntity
+// }
 
-export function isAxiosUnauthorizedError<UnauthorizedError>(error: unknown): error is AxiosError<UnauthorizedError> {
-   return isAxiosError(error) && error.response?.status === HttpStatusCode.Unauthorized
-}
+// export function isAxiosUnauthorizedError<UnauthorizedError>(error: unknown): error is AxiosError<UnauthorizedError> {
+//    return isAxiosError(error) && error.response?.status === HttpStatusCode.Unauthorized
+// }
 
 /*===== Local Storage =====*/
 export const LocalStorageEventTarget = new EventTarget()

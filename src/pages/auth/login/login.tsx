@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { isMobile } from 'react-device-detect';
+import { toast } from "react-toastify";
 
 import { AppContext } from "~/contexts/app-context";
 import { authApi } from "~/api";
@@ -36,11 +37,11 @@ function Login() {
 
                navigate('/')
             } else {
-               alert(data.data.Message)
+               toast.error(data.data.Message);
             }
          },
          onError: (error) => {
-            alert(error)
+            console.log("onError", error);
          }
       })
    }

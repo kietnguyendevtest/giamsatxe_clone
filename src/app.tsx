@@ -2,7 +2,8 @@
 import { useContext, useEffect } from "react";
 import { useRouteElements } from "./hooks";
 
-import { AppContext } from "./contexts/app-context";
+import { AppContext } from "~/contexts/app-context";
+import Toastify from "~/components/toastify";
 import "~/assets/scss/main.scss";
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
    return (
       <>
          {routeElements}
+
+         <Toastify />
       </>
    )
 }
