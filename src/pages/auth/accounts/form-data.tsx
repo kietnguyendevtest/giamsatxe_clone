@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Account as AccountType } from "~/types/account-type";
 import { accountSchema } from "~/utils/rules";
-import { Button, SelectBox, TextBox, Textarea } from "~/components/controls";
+import { Button, TextBox, Textarea } from "~/components/controls";
 
 
 type TFormData = AccountType;
@@ -21,8 +21,6 @@ function FormData(props: IProps) {
    const handleSubmit = (values: TFormData) => {
       onSubmit && onSubmit(values);
    }
-
-   console.log("formRHF", formRHF.formState);
 
    return (
       <div>
@@ -73,7 +71,7 @@ function FormData(props: IProps) {
                ]}
             /> */}
 
-            <SelectBox
+            {/* <SelectBox
                formRHF={formRHF}
                name='role2'
                label="Role 2"
@@ -84,7 +82,7 @@ function FormData(props: IProps) {
                   { value: "2", label: "Two" },
                   { value: "3", label: "Three" },
                ]}
-            />
+            /> */}
 
             <Button
                variant="contained"

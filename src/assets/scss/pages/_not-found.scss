@@ -1,0 +1,192 @@
+.notfoundpage-container {
+    /* colors */
+    $blue: #293b49;
+    $pink: #fdabaf;
+    $pink-light: #ffe0e6;
+    $white: white;
+
+    height: 100%;
+    font-family: "Lato", sans-serif;
+    font-size: 15px;
+    color: $blue;
+
+    a {
+        text-decoration: none;
+        font-family: var(--font-family-primary);
+        color: #03a9f4;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        i {
+            margin-top: 1px;
+            margin-left: 10px;
+        }
+
+        span {
+            margin-left: 5px;
+            margin-right: 10px;
+        }
+    }
+
+    .center {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .error {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: center;
+    }
+
+    .number {
+        font-weight: 900;
+        font-size: 150px;
+        line-height: 1;
+    }
+
+    .illustration {
+        position: relative;
+        width: 122px;
+        margin: 0 21px;
+    }
+
+    .circle {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 122px;
+        height: 114px;
+        border-radius: 50%;
+        background-color: $blue;
+    }
+
+    .clip {
+        position: absolute;
+        bottom: 3px;
+        left: 50%;
+        transform: translateX(-50%);
+        overflow: hidden;
+        width: 125px;
+        height: 130px;
+        border-radius: 0 0 50% 50%;
+    }
+
+    .paper {
+        position: absolute;
+        bottom: -3px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 92px;
+        height: 124px;
+        border: 3px solid $blue;
+        background-color: $white;
+        border-radius: 8px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            width: 14px;
+            height: 10px;
+            background-color: $white;
+            border-bottom: 3px solid $blue;
+            transform: rotate(45deg);
+        }
+    }
+
+    .face {
+        position: relative;
+        margin-top: 23px;
+    }
+
+    .eyes {
+        position: absolute;
+        top: 0;
+        left: 20px;
+        width: 46px;
+        height: 8px;
+    }
+
+    .eye {
+        position: absolute;
+        bottom: 0;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $blue;
+        animation-name: eye;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+
+        &-left {
+            left: 0;
+        }
+
+        &-right {
+            right: 0;
+        }
+    }
+
+    @keyframes eye {
+        0% {
+            height: 8px;
+        }
+        50% {
+            height: 8px;
+        }
+        52% {
+            height: 1px;
+        }
+        54% {
+            height: 8px;
+        }
+        100% {
+            height: 8px;
+        }
+    }
+
+    .rosyCheeks {
+        position: absolute;
+        top: 16px;
+        width: 10px;
+        height: 2px;
+        border-radius: 50%;
+        background-color: $pink;
+
+        &-left {
+            left: 14px;
+        }
+
+        &-right {
+            right: 14px;
+        }
+    }
+
+    .mouth {
+        position: absolute;
+        top: 31px;
+        left: 50%;
+        width: 16px;
+        height: 2px;
+        border-radius: 1px;
+        transform: translateX(-50%);
+        background-color: $blue;
+    }
+
+    .text {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-size: 20px;
+        font-weight: 600;
+        color: $blue;
+        font-family: var(--font-family-primary);
+    }
+}

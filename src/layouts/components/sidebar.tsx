@@ -1,12 +1,11 @@
 import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-// import CryptoJS from "crypto-js";
 
 import { Sidebar as Aside, Menu, SubMenu, MenuItem } from "react-pro-sidebar";
 
 import { AppContext } from '~/contexts/app-context';
+//import { storage } from '~/utils';
 import path from '~/constants/path';
-// import config from '~/constants/config';
 
 function Sidebar() {
    const { groupRole, menuRole } = useContext(AppContext);
@@ -25,17 +24,19 @@ function Sidebar() {
          <Aside collapsed={collapsed} width="230px">
             <Menu closeOnClick={true}>
                <MenuItem
-                  component={<NavLink to={path.home} />}
+                  component={
+                     <NavLink
+                        to={path.home}
+                     // onClick={() => {
+                     //    storage.setCurrentUrl(path.home);
+                     //    storage.setCurrentPage("");
+                     //    storage.setCurrentControllerName("");
+                     // }}
+                     />
+                  }
                   icon={<i className="fa-solid fa-house"></i>}
                >
                   Trang chủ
-               </MenuItem>
-
-               <MenuItem
-                  component={<NavLink to={path.accounts} />}
-                  icon={<i className="fa-solid fa-gear"></i>}
-               >
-                  Accounts
                </MenuItem>
 
                {groupRole && groupRole.length > 0
@@ -59,11 +60,9 @@ function Sidebar() {
                                                 <NavLink
                                                    to={`/${item2.Controller}`}
                                                 // onClick={() => {
-                                                //    localStorage.setItem(config.STORAGE_CURRENTURL , CryptoJS.Rabbit.encrypt(`/${item2.Controller}`, config.SECRET_ENCRYPTION));
-
-                                                //    localStorage.setItem(config.STORAGE_CURRENTPAGE, `${item2.TenGoi}`);
-
-                                                //    localStorage.setItem(config.STORAGE_CURRENTCONTROLLERNAME, CryptoJS.Rabbit.encrypt(`${item2.ControllerName}`, config.SECRET_ENCRYPTION));
+                                                //    storage.setCurrentUrl(`/${item2.Controller}`);
+                                                //    storage.setCurrentPage(`/${item2.TenGoi}`);
+                                                //    storage.setCurrentControllerName(`/${item2.ControllerName}`);
                                                 // }}
                                                 />
                                              }

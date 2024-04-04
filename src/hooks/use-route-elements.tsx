@@ -11,6 +11,9 @@ import Home from "~/pages/home";
 import NotFound from "~/pages/not-found";
 
 import Login from "~/pages/auth/login";
+import GroupRole from "~/pages/auth/group-role";
+import MenuRole from "~/pages/auth/menu-role";
+import SettingRole from "~/pages/auth/setting-role";
 import Accounts from "~/pages/auth/accounts";
 
 function ProtectedRoute() {
@@ -53,7 +56,31 @@ function useRouteElements() {
                )
             },
             {
-               path: path.accounts,
+               path: path.auth__group_role,
+               element: (
+                  <MainLayout>
+                     <GroupRole />
+                  </MainLayout>
+               )
+            },
+            {
+               path: path.auth__menu_role,
+               element: (
+                  <MainLayout>
+                     <MenuRole />
+                  </MainLayout>
+               )
+            },
+            {
+               path: path.auth__setting_role,
+               element: (
+                  <MainLayout>
+                     <SettingRole />
+                  </MainLayout>
+               )
+            },
+            {
+               path: path.auth__accounts,
                element: (
                   <MainLayout>
                      <Accounts />
