@@ -1,9 +1,8 @@
 .notfoundpage-container {
     /* colors */
-    $blue: #293b49;
-    $pink: #fdabaf;
-    $pink-light: #ffe0e6;
-    $white: white;
+    $blue: var(--notfoundpage-blue);
+    $pink: var(--notfoundpage-pink);
+    $white: var(--notfoundpage-white);
 
     height: 100%;
     font-family: "Lato", sans-serif;

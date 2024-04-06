@@ -57,7 +57,6 @@ function Login() {
             <form onSubmit={formRHF.handleSubmit(handleSubmit)} noValidate>
                <TextBox
                   formRHF={formRHF}
-                  value={'admin'}
                   name='username'
                   label="Tài khoản"
                   leftIcon={<i className="fa-solid fa-user"></i>}

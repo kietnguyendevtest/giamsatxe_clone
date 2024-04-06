@@ -2,9 +2,12 @@
 import { useContext, useEffect } from "react";
 import { useRouteElements } from "./hooks";
 
+
 import { AppContext } from "~/contexts/app-context";
 import { storage } from "./utils";
 import Toastify from "~/components/toastify";
+
+import 'tippy.js/dist/tippy.css';
 import "~/assets/scss/main.scss";
 
 function App() {

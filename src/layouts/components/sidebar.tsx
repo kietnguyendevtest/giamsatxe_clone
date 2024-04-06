@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Sidebar as Aside, Menu, SubMenu, MenuItem } from "react-pro-sidebar";
+import Tippy from '@tippyjs/react';
 
 import { AppContext } from '~/contexts/app-context';
 //import { storage } from '~/utils';
@@ -47,29 +48,34 @@ function Sidebar() {
                               key={`menu-${index}`}
                               label={item.TenGoi}
                               icon={<i className={item.Icon}></i>}
-                              title={item.TenGoi}
                            >
                               {menuRole && menuRole.length > 0
                                  && menuRole.map((item2, index2) => {
                                     if (item.Id === item2.NhomQuyenId && item2.IsActived) {
                                        return (
-                                          <MenuItem
+                                          <Tippy
                                              key={`menusub-${index2}`}
-                                             icon={<i className={item2.Icon} ></i>}
-                                             component={
-                                                <NavLink
-                                                   to={`/${item2.Controller}`}
-                                                // onClick={() => {
-                                                //    storage.setCurrentUrl(`/${item2.Controller}`);
-                                                //    storage.setCurrentPage(`/${item2.TenGoi}`);
-                                                //    storage.setCurrentControllerName(`/${item2.ControllerName}`);
-                                                // }}
-                                                />
-                                             }
-                                             title={item2.TenGoi}
+                                             placement='auto-end'
+                                             delay={[500, 0]}
+                                             content={item2.TenGoi}
+                                             disabled={item2.TenGoi.length > 20 ? false : true}
                                           >
-                                             {item2.TenGoi}
-                                          </MenuItem>
+                                             <MenuItem
+                                                icon={<i className={item2.Icon} ></i>}
+                                                component={
+                                                   <NavLink
+                                                      to={`/${item2.Controller}`}
+                                                   // onClick={() => {
+                                                   //    storage.setCurrentUrl(`/${item2.Controller}`);
+                                                   //    storage.setCurrentPage(`/${item2.TenGoi}`);
+                                                   //    storage.setCurrentControllerName(`/${item2.ControllerName}`);
+                                                   // }}
+                                                   />
+                                                }
+                                             >
+                                                {item2.TenGoi}
+                                             </MenuItem>
+                                          </Tippy>
                                        );
                                     }
                                  })}
