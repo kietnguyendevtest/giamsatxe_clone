@@ -31,9 +31,9 @@ const storage = {
    // setCurrentUrl: (current_url: string) => {
    //    return localStorage.setItem(config.KEY_STORAGE_CURRENT_URL, CryptoJS.Rabbit.encrypt(current_url, config.SECRET_ENCRYPTION).toString());
    // },
-   // setCurrentPage: (current_page: string) => {
-   //    return localStorage.setItem(config.KEY_STORAGE_CURRENT_PAGE, CryptoJS.Rabbit.encrypt(current_page, config.SECRET_ENCRYPTION).toString());
-   // },
+   setCurrentPage: (current_page: string) => {
+      return localStorage.setItem(config.KEY_STORAGE_CURRENT_PAGE, CryptoJS.Rabbit.encrypt(current_page, config.SECRET_ENCRYPTION).toString());
+   },
    // setCurrentControllerName: (current_controller_name: string) => {
    //    return localStorage.setItem(config.KEY_STORAGE_CURRENT_CONTROLLER_NAME, CryptoJS.Rabbit.encrypt(current_controller_name, config.SECRET_ENCRYPTION).toString());
    // },
@@ -102,15 +102,15 @@ const storage = {
    //       return "";
    //    }
    // },
-   // getCurrentPage: () => {
-   //    try {
-   //       const result = localStorage.getItem(config.KEY_STORAGE_CURRENT_PAGE) || "";
-   //       return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
-   //    } catch (error) {
-   //       toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
-   //       return "";
-   //    }
-   // },
+   getCurrentPage: () => {
+      try {
+         const result = localStorage.getItem(config.KEY_STORAGE_CURRENT_PAGE) || "";
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
+      } catch (error) {
+         toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
+         return "";
+      }
+   },
    // getCurrentControllerName: () => {
    //    try {
    //       const result = localStorage.getItem(config.KEY_STORAGE_CURRENT_CONTROLLER_NAME) || "";

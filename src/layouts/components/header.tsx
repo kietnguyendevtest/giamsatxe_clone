@@ -48,6 +48,11 @@ function Header() {
          <div className="header-left">
             <NavLink
                to={path.home}
+               onClick={() => {
+                  //storage.setCurrentUrl(path.home);
+                  storage.setCurrentPage("");
+                  //storage.setCurrentControllerName("");
+               }}
                className="header-left__logo"
             />
             <div className="header-left__app-wrapper">

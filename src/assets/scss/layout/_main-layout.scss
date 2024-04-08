@@ -6,4 +6,30 @@
 
 .content-wrapper {
    flex: 1;
+   padding: 20px;
+}
+
+.content-title {
+   position: relative;
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin-bottom: 24px;
+   padding-bottom: 4px;
+   border-bottom: 2px solid var(--primary-color);
+   font-size: 1.5rem;
+
+   &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: 22px;
+      left: 0;
+      border-bottom: 1px solid var(--primary-color);
+   }
+
+   .content-text {
+      font-weight: 600;
+   }
 }

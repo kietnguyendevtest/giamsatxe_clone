@@ -6,11 +6,12 @@ div[data-tippy-root] {
 }
 
 .popper-wrapper {
-   background: #878787;
-   min-width: 180px;
+   overflow: auto;
+   min-width: 190px;
    min-height: 50px;
    max-height: 50vh;
-   overflow: auto;
+   background: #878787;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
    animation: scale-up-ver-top 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 

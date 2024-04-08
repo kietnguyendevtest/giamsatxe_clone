@@ -3,12 +3,12 @@
 .homepage-container {
     height: 100%;
     width: 100%;
-    background-image: url(../../images/bg-home-lg.png);
+    background-image: url("/src/assets/images/bg-home-lg.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
 
     @include abstracts.screen(md) {
-        background-image: url(../../images/bg-home-sm.png);
+        background-image: url("/src/assets/images/bg-home-sm.png");
     }
 }

@@ -1,4 +1,5 @@
 import { Header, Sidebar, Footer } from '~/layouts/components';
+import { storage } from '~/utils';
 
 interface IProps {
     children?: React.ReactNode
@@ -33,6 +34,13 @@ function MainLayout(props: IProps) {
                 </div>
 
                 <div className="content-wrapper">
+                    {
+                        storage.getCurrentPage() &&
+                        <div className="content-title">
+                            <i className="fa-solid fa-display"></i>
+                            <h2 className='content-text'>{storage.getCurrentPage()}</h2>
+                        </div>
+                    }
                     {props.children}
                 </div>
 

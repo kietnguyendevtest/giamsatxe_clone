@@ -5,7 +5,7 @@ import { Sidebar as Aside, Menu, SubMenu, MenuItem } from "react-pro-sidebar";
 import Tippy from '@tippyjs/react';
 
 import { AppContext } from '~/contexts/app-context';
-//import { storage } from '~/utils';
+import { storage } from '~/utils';
 import path from '~/constants/path';
 
 function Sidebar() {
@@ -28,11 +28,11 @@ function Sidebar() {
                   component={
                      <NavLink
                         to={path.home}
-                     // onClick={() => {
-                     //    storage.setCurrentUrl(path.home);
-                     //    storage.setCurrentPage("");
-                     //    storage.setCurrentControllerName("");
-                     // }}
+                        onClick={() => {
+                           //storage.setCurrentUrl(path.home);
+                           storage.setCurrentPage("");
+                           //storage.setCurrentControllerName("");
+                        }}
                      />
                   }
                   icon={<i className="fa-solid fa-house"></i>}
@@ -65,11 +65,11 @@ function Sidebar() {
                                                 component={
                                                    <NavLink
                                                       to={`/${item2.Controller}`}
-                                                   // onClick={() => {
-                                                   //    storage.setCurrentUrl(`/${item2.Controller}`);
-                                                   //    storage.setCurrentPage(`/${item2.TenGoi}`);
-                                                   //    storage.setCurrentControllerName(`/${item2.ControllerName}`);
-                                                   // }}
+                                                      onClick={() => {
+                                                         //storage.setCurrentUrl(`/${item2.Controller}`);
+                                                         storage.setCurrentPage(`${item2.TenGoi}`);
+                                                         //storage.setCurrentControllerName(`${item2.ControllerName}`);
+                                                      }}
                                                    />
                                                 }
                                              >
