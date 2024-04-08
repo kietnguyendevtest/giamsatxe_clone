@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -18,6 +18,10 @@ export type TFormData = AuthLoginType
 function Login() {
    const { setIsAuthenticated, setGroupRole, setMenuRole } = useContext(AppContext);
    const navigate = useNavigate();
+
+   useEffect(() => {
+      document.getElementsByTagName("html")[0].classList.remove("dark");
+   }, []);
 
    const formRHF = useForm<TFormData>({
       resolver: yupResolver(authShema)

@@ -80,7 +80,7 @@ function useRouteElements() {
                )
             },
             {
-               path: path.auth__accounts,
+               path: path.auth__dropdowns,
                element: (
                   <MainLayout>
                      <Accounts />

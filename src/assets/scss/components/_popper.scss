@@ -1,5 +1,26 @@
+div[data-tippy-root] {
+   z-index: unset !important;
+   position: unset !important;
+   inset: unset !important;
+   transform: unset !important;
+}
+
 .popper-wrapper {
-   background: #ccc;
-   width: 100px;
-   height: 100px;
+   background: #878787;
+   min-width: 180px;
+   min-height: 50px;
+   max-height: 50vh;
+   overflow: auto;
+   animation: scale-up-ver-top 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes scale-up-ver-top {
+   0% {
+      transform: scaleY(0.4);
+      transform-origin: 100% 0%;
+   }
+   100% {
+      transform: scaleY(1);
+      transform-origin: 100% 0%;
+   }
 }
