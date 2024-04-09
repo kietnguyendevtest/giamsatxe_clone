@@ -7,6 +7,7 @@ import { storage } from "~/utils";
 import path from "~/constants/path";
 import PopperWrapper from "~/components/popper";
 
+
 function Header() {
    const { reset } = useContext(AppContext);
    const navigate = useNavigate();
@@ -15,20 +16,6 @@ function Header() {
    const [showTippyRight, setShowTippyRight] = useState<boolean>(false);
 
    const [isDark, setDisDark] = useState<boolean>(false);
-
-   const handeChangeTheme = (e: any) => {
-      if (!e.target.checked) {
-         document.getElementsByTagName("html")[0].classList.remove("dark");
-      } else {
-         document.getElementsByTagName("html")[0].classList.add("dark");
-      }
-      setDisDark(!isDark);
-   };
-
-   const handeSubmitLogout = () => {
-      reset();
-      navigate('/login');
-   }
 
    const getFullName = () => {
       try {
@@ -43,6 +30,20 @@ function Header() {
       }
    }
 
+   const handeChangeTheme = (e: any) => {
+      if (!e.target.checked) {
+         document.getElementsByTagName("html")[0].classList.remove("dark");
+      } else {
+         document.getElementsByTagName("html")[0].classList.add("dark");
+      }
+      setDisDark(prev => !prev);
+   };
+
+   const handeSubmitLogout = () => {
+      reset();
+      navigate('/login');
+   }
+
    return (
       <header className="header-container">
          <div className="header-left">
@@ -53,7 +54,7 @@ function Header() {
                   storage.setCurrentPage("");
                   //storage.setCurrentControllerName("");
                }}
-               className="header-left__logo"
+               className="header-left__logo d-md-none"
             />
             <div className="header-left__app-wrapper">
                <Tippy
@@ -101,9 +102,10 @@ function Header() {
 
          <div className="header-right">
             <ul className="header-right__list">
-               <li>
+               <li className="d-md-none">
                   <label className="header-right__item ui-switch">
                      <input
+                        id="changeTheme"
                         type="checkbox"
                         checked={isDark}
                         onChange={handeChangeTheme}
@@ -120,6 +122,16 @@ function Header() {
                         <div className="header-right__dropdown" tabIndex={-1} {...attrs}>
                            <PopperWrapper>
                               <div className='header-right__dropdown-list'>
+                                 <div className='header-right__dropdown-item item-user d-none d-md-block'>
+                                    <i className="fa-solid fa-circle-user"></i>
+                                    <span>{getFullName()}</span>
+                                 </div>
+
+                                 <label className='header-right__dropdown-item d-none d-md-block' htmlFor="changeTheme">
+                                    {isDark ? <i className="fa-solid fa-moon"></i> : <i className="fa-solid fa-sun"></i>}
+                                    <span>Đổi giao diện</span>
+                                 </label>
+
                                  <NavLink
                                     to={path.change_password}
                                     className='header-right__dropdown-item'
@@ -130,6 +142,7 @@ function Header() {
                                        </>
                                     }
                                  />
+
                                  <div className='header-right__dropdown-item' onClick={handeSubmitLogout}>
                                     <i className="fa-solid fa-right-from-bracket"></i>
                                     <span>Đăng xuất</span>
@@ -141,15 +154,54 @@ function Header() {
                      visible={showTippyRight}
                      onClickOutside={() => setShowTippyRight(!showTippyRight)}
                   >
-                     <div className="header-right__item" onClick={() => setShowTippyRight(!showTippyRight)}>
-                        <i className="fa-solid fa-circle-user"></i>
-                        <span>{getFullName()}</span>
+                     <div className="header-right__item-wrapper">
+                        <div className="header-right__item d-md-none" onClick={() => setShowTippyRight(!showTippyRight)}>
+                           <i className="fa-solid fa-circle-user"></i>
+                           <span>{getFullName()}</span>
+                        </div>
+
+                        <button className="header-right__btn-more d-none d-md-block" onClick={() => setShowTippyRight(!showTippyRight)}>
+                           <i className="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
                      </div>
                   </Tippy>
                </li>
             </ul>
-
          </div>
+
+         {/* <div className="header-right-sm d-none d-md-block">
+            <Tippy
+               interactive
+               render={(attrs) => (
+                  <div className="header-right__dropdown" tabIndex={-1} {...attrs}>
+                     <PopperWrapper>
+                        <div className='header-right__dropdown-list'>
+                           <NavLink
+                              to={path.change_password}
+                              className='header-right__dropdown-item'
+                              children={
+                                 <>
+                                    <i className="fa-solid fa-repeat"></i>
+                                    <span>Đổi mật khẩu</span>
+                                 </>
+                              }
+                           />
+                           <div className='header-right__dropdown-item' onClick={handeSubmitLogout}>
+                              <i className="fa-solid fa-right-from-bracket"></i>
+                              <span>Đăng xuất</span>
+                           </div>
+                        </div>
+                     </PopperWrapper>
+                  </div>
+               )}
+               visible={showTippyRight}
+               onClickOutside={handleShowTippyRight}
+            >
+               <button className="header-right-sm__btn-more" onClick={handleShowTippyRight}>
+                  <i className="fa-solid fa-ellipsis-vertical"></i>
+               </button>
+            </Tippy>
+         </div> */}
       </header>
    );
 }

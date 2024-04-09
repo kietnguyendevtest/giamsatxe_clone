@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import { Sidebar as Aside, Menu, SubMenu, MenuItem } from "react-pro-sidebar";
 import Tippy from '@tippyjs/react';
+import { isMobile } from 'react-device-detect';
 
 import { AppContext } from '~/contexts/app-context';
 import { storage } from '~/utils';
@@ -11,16 +11,34 @@ import path from '~/constants/path';
 function Sidebar() {
    const { groupRole, menuRole } = useContext(AppContext);
 
-   const [collapsed, setCollapsed] = useState(false);
+   const [collapsed, setCollapsed] = useState<boolean>(isMobile ? true : false);
+
+   const handleCollapsed = () => {
+      setCollapsed(prev => !prev);
+   }
 
    return (
       <>
          <div
             className="btn-collapsed"
-            onClick={() => setCollapsed(!collapsed)}
+            onClick={handleCollapsed}
          >
             <i className="fa-solid fa-bars"></i>
          </div>
+
+
+         {
+            !collapsed &&
+            <div className="sidebar-header-mobile">
+               <div className="sidebar-header-mobile__logo"></div>
+               <div
+                  className="sidebar-header-mobile__btn-close"
+                  onClick={handleCollapsed}
+               >
+                  <i className="fa-solid fa-xmark"></i>
+               </div>
+            </div>
+         }
 
          <Aside collapsed={collapsed} width="230px">
             <Menu closeOnClick={true}>
@@ -29,6 +47,8 @@ function Sidebar() {
                      <NavLink
                         to={path.home}
                         onClick={() => {
+                           isMobile && handleCollapsed();
+
                            //storage.setCurrentUrl(path.home);
                            storage.setCurrentPage("");
                            //storage.setCurrentControllerName("");
@@ -66,6 +86,8 @@ function Sidebar() {
                                                    <NavLink
                                                       to={`/${item2.Controller}`}
                                                       onClick={() => {
+                                                         isMobile && handleCollapsed();
+
                                                          //storage.setCurrentUrl(`/${item2.Controller}`);
                                                          storage.setCurrentPage(`${item2.TenGoi}`);
                                                          //storage.setCurrentControllerName(`${item2.ControllerName}`);

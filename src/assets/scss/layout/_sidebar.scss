@@ -7,6 +7,18 @@
 
    .ps-sidebar-root {
       border: none;
+
+      @include abstracts.screen(md) {
+         width: 0;
+         min-width: 0;
+
+         position: fixed;
+         inset: 0;
+         z-index: calc(var(--header-layout-z-index) + 1);
+         width: 100vw;
+         padding-top: 65px;
+         background: var(--sidebar-layout-bg);
+      }
    }
 
    .ps-sidebar-container {
@@ -85,6 +97,39 @@
          }
       }
    }
+
+   /// Responvsive
+   .sidebar-header-mobile {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: calc(var(--header-layout-z-index) + 2);
+      border-bottom: 2px solid var(--sidebar-border-color);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s ease;
+
+      &__logo {
+         width: 100px;
+         height: 65px;
+         margin-left: 6px;
+         background-image: var(--sidebar-layout-logo);
+         background-size: contain;
+         background-repeat: no-repeat;
+      }
+
+      &__btn-close {
+         padding: 20px;
+         font-size: 2.4rem;
+      }
+
+      @include abstracts.screen(md) {
+         opacity: 1;
+         visibility: visible;
+
+         display: flex;
+         justify-content: space-between;
+      }
+   }
 }
 
 .btn-collapsed {
@@ -95,4 +140,8 @@
    cursor: pointer;
    font-size: 3rem;
    color: var(--text-white);
+
+   @include abstracts.screen(md) {
+      left: 24px;
+   }
 }
