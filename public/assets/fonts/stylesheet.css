@@ -1,0 +1,33 @@
+/* =============================== Glypha VO =================================== */
+@font-face {
+    font-family: 'Glypha VO';
+    src: url('./GlyphaVO/GlyphaVO.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Glypha VO';
+    src: url('./GlyphaVO/GlyphaVO-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Glypha VO';
+    src: url('./GlyphaVO/GlyphaVO-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Glypha VO';
+    src: url('./GlyphaVO/GlyphaVO-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
