@@ -1,51 +1,67 @@
-import { Header, Sidebar, Footer } from '~/layouts/components';
+import { useContext, useEffect, useLayoutEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { AppContext } from '~/contexts/app-context';
 import { storage } from '~/utils';
+import { Header, Sidebar, Footer } from '~/layouts/components';
 
 interface IProps {
     children?: React.ReactNode
 }
 
 function MainLayout(props: IProps) {
-    // const navigate = useNavigate();
-    // const account_redux = useSelector((state) => state.user.account);
-    // const currentUrl_redux = useSelector((state) => state.user.currentUrl);
+    const { isAuthenticated } = useContext(AppContext);
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (account_redux && account_redux.auth) {
-    //         if (!localStorage.getItem(process.env.REACT_APP_STORAGE_CURRENTCONTROLLERNAME)) {
-    //             navigate("/");
-    //         }
-    //         else {
-    //             navigate(currentUrl_redux);
-    //         }
-    //     } else {
-    //         navigate("/login");
-    //     }
-    // }, [account_redux]);
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate("/login");
+        }
+    }, []);
+
+    useLayoutEffect(() => {
+        if (isAuthenticated) {
+            navigate(storage.getCurrentUrl());
+        }
+    }, []);
 
     return (
         <>
-            <Header />
+            {
+                isAuthenticated &&
+                <>
+                    <Header />
 
-            <div className="wrapper">
+                    <div className="wrapper">
 
-                <div className="aside-wrapper">
-                    <Sidebar />
-                </div>
-
-                <div className="content-wrapper">
-                    {
-                        storage.getCurrentPage() &&
-                        <div className="content-title">
-                            <i className="fa-solid fa-display"></i>
-                            <h2 className='content-text'>{storage.getCurrentPage()}</h2>
+                        <div className="aside-wrapper">
+                            <Sidebar />
                         </div>
-                    }
-                    {props.children}
-                </div>
 
-            </div>
-            <Footer />
+                        <div className="content-wrapper">
+                            {
+                                storage.getCurrentPageLv2() &&
+                                <div className="content-title">
+                                    <div className="content-title__icon">
+                                        <i className="fa-solid fa-display"></i>
+                                    </div>
+                                    <h2 className='content-title__text'>
+                                        {storage.getCurrentPageLv1() &&
+                                            <>
+                                                {storage.getCurrentPageLv1()}<i className="fa-solid fa-caret-right"></i>
+                                            </>
+                                        }
+                                        {storage.getCurrentPageLv2()}
+                                    </h2>
+                                </div>
+                            }
+                            {props.children}
+                        </div>
+
+                    </div>
+                    <Footer />
+                </>
+            }
         </>
     );
 }

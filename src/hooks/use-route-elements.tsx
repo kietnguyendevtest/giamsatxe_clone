@@ -7,14 +7,15 @@ import path from "~/constants/path";
 import AuthLayout from "~/layouts/auth-layout";
 import MainLayout from "~/layouts/main-layout";
 
-import Home from "~/pages/home";
-import NotFound from "~/pages/not-found";
-
-import Login from "~/pages/auth/login";
-import GroupRole from "~/pages/auth/group-role";
-import MenuRole from "~/pages/auth/menu-role";
-import SettingRole from "~/pages/auth/setting-role";
-import Accounts from "~/pages/auth/accounts";
+///--Features Common
+import Home from "~/features/common/home";
+import NotFound from "~/components/not-found";
+import Login from "~/features/common/auth/login";
+import ChangePassword from "~/features/common/auth/change-password";
+import GroupRole from "~/features/common/auth/group-role";
+import MenuRole from "~/features/common/auth/menu-role";
+import SettingRole from "~/features/common/auth/setting-role";
+import Accounts from "~/features/common/auth/accounts";
 
 function ProtectedRoute() {
    const { isAuthenticated } = useContext(AppContext)
@@ -56,6 +57,14 @@ function useRouteElements() {
                )
             },
             {
+               path: path.change_password,
+               element: (
+                  <MainLayout>
+                     <ChangePassword />
+                  </MainLayout>
+               )
+            },
+            {
                path: path.auth__group_role,
                element: (
                   <MainLayout>
@@ -80,7 +89,7 @@ function useRouteElements() {
                )
             },
             {
-               path: path.auth__dropdowns,
+               path: path.auth__accounts,
                element: (
                   <MainLayout>
                      <Accounts />

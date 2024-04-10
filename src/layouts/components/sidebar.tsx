@@ -27,8 +27,7 @@ function Sidebar() {
          </div>
 
 
-         {
-            !collapsed &&
+         {!collapsed &&
             <div className="sidebar-header-mobile">
                <div className="sidebar-header-mobile__logo"></div>
                <div
@@ -49,9 +48,10 @@ function Sidebar() {
                         onClick={() => {
                            isMobile && handleCollapsed();
 
-                           //storage.setCurrentUrl(path.home);
-                           storage.setCurrentPage("");
-                           //storage.setCurrentControllerName("");
+                           storage.setCurrentUrl(path.home);
+                           storage.setCurrentPageLv1("");
+                           storage.setCurrentPageLv2("");
+                           storage.setCurrentControllerName("");
                         }}
                      />
                   }
@@ -68,6 +68,7 @@ function Sidebar() {
                               key={`menu-${index}`}
                               label={item.TenGoi}
                               icon={<i className={item.Icon}></i>}
+                              open={item.TenGoi === storage.getCurrentPageLv1() ? true : undefined}
                            >
                               {menuRole && menuRole.length > 0
                                  && menuRole.map((item2, index2) => {
@@ -88,9 +89,10 @@ function Sidebar() {
                                                       onClick={() => {
                                                          isMobile && handleCollapsed();
 
-                                                         //storage.setCurrentUrl(`/${item2.Controller}`);
-                                                         storage.setCurrentPage(`${item2.TenGoi}`);
-                                                         //storage.setCurrentControllerName(`${item2.ControllerName}`);
+                                                         storage.setCurrentUrl(`/${item2.Controller}`);
+                                                         storage.setCurrentPageLv1(`${item.TenGoi}`);
+                                                         storage.setCurrentPageLv2(`${item2.TenGoi}`);
+                                                         storage.setCurrentControllerName(`${item2.ControllerName}`);
                                                       }}
                                                    />
                                                 }
@@ -104,28 +106,54 @@ function Sidebar() {
                            </SubMenu>
                         );
                      }
-                  })}
+                  })
+               }
 
-               {/* <SubMenu label="Test 1" icon={<FontAwesomeIcon icon={['fas', 'gear']} />}>
-               <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />} component={<NavLink to="/ho-so-nhan-su" />}>Test 1.1</MenuItem>
-               <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 1.2</MenuItem>
-            </SubMenu>
-            <SubMenu label="Test 2" icon={<FontAwesomeIcon icon={['fas', 'gear']} />}>
-               <SubMenu label="Test 2.1" icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>
-                  <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.1.1</MenuItem>
-               </SubMenu>
+               {/* <SubMenu
+                  label="Quản trị hệ thống"
+                  icon={<i className="fa-solid fa-gears"></i>}
+               //open={true}
+               >
+                  <MenuItem icon={<i className='fa-regular fa-hand-point-right'></i>}
+                     component={<NavLink to={path.auth__group_role2} onClick={() => handleClickMenu(path.auth__group_role2, "Nhóm quyền")} />}
+                  >
+                     Nhóm quyền
+                  </MenuItem>
+                  <MenuItem
+                     icon={<i className='fa-regular fa-hand-point-right'></i>}
+                     component={<NavLink to={path.auth__menu_role2} onClick={() => handleClickMenu(path.auth__menu_role2, "Menu")} />}
+                  //active={true}
+                  >
+                     Menu
+                  </MenuItem>
+                  <MenuItem icon={<i className='fa-regular fa-hand-point-right'></i>}
+                     component={<NavLink to={path.auth__setting_role2} onClick={() => handleClickMenu(path.auth__setting_role2, "Vai trò")} />}
+                  >
+                     Vai trò
+                  </MenuItem>
+                  <MenuItem icon={<i className='fa-regular fa-hand-point-right'></i>}
+                     component={<NavLink to={path.auth__accounts2} onClick={() => handleClickMenu(path.auth__accounts2, "Tài khoản")} />}
+                  >
+                     Tài khoản
+                  </MenuItem>
+               </SubMenu> */}
 
-               <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.2</MenuItem>
-
-               <SubMenu label="Test 2.3" icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>
-                  <SubMenu label="Test 2.3.1" icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>
-                     <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.3.1.1</MenuItem>
-                     <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.3.1.2</MenuItem>
+               {/* <SubMenu label="Test 2" icon={<FontAwesomeIcon icon={['fas', 'gear']} />}>
+                  <SubMenu label="Test 2.1" icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>
+                     <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.1.1</MenuItem>
                   </SubMenu>
 
-                  <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.3.2</MenuItem>
-               </SubMenu>
-            </SubMenu> */}
+                  <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.2</MenuItem>
+
+                  <SubMenu label="Test 2.3" icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>
+                     <SubMenu label="Test 2.3.1" icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>
+                        <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.3.1.1</MenuItem>
+                        <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.3.1.2</MenuItem>
+                     </SubMenu>
+
+                     <MenuItem icon={<FontAwesomeIcon icon={['fas', 'hand-point-right']} />}>Test 2.3.2</MenuItem>
+                  </SubMenu>
+               </SubMenu> */}
             </Menu>
          </Aside>
       </>

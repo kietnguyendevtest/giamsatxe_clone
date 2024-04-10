@@ -16,7 +16,7 @@ import images from '~/assets/images/index';
 export type TFormData = AuthLoginType
 
 function Login() {
-   const { setIsAuthenticated, setGroupRole, setMenuRole } = useContext(AppContext);
+   const { setIsAuthenticated, setGroupRole, setMenuRole, setSetRole } = useContext(AppContext);
    const navigate = useNavigate();
 
    useEffect(() => {
@@ -37,9 +37,10 @@ function Login() {
             if (data.data.StatusCode === 200) {
                setIsAuthenticated(true);
                setGroupRole(data.data.Result?.NhomQuyen || []);
-               setMenuRole(data.data.Result?.Menu || [])
+               setMenuRole(data.data.Result?.Menu || []);
+               setSetRole(data.data.Result?.PhanQuyen || []);
 
-               navigate('/')
+               navigate('/');
             } else {
                toast.error(data.data.Message);
             }

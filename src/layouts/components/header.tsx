@@ -39,6 +39,10 @@ function Header() {
       setDisDark(prev => !prev);
    };
 
+   const handleTippyRight = () => {
+      setShowTippyRight(prev => !prev);
+   }
+
    const handeSubmitLogout = () => {
       reset();
       navigate('/login');
@@ -49,10 +53,12 @@ function Header() {
          <div className="header-left">
             <NavLink
                to={path.home}
+               replace
                onClick={() => {
-                  //storage.setCurrentUrl(path.home);
-                  storage.setCurrentPage("");
-                  //storage.setCurrentControllerName("");
+                  storage.setCurrentUrl(path.home);
+                  storage.setCurrentPageLv1("");
+                  storage.setCurrentPageLv2("");
+                  storage.setCurrentControllerName("");
                }}
                className="header-left__logo d-md-none"
             />
@@ -141,6 +147,14 @@ function Header() {
                                           <span>Đổi mật khẩu</span>
                                        </>
                                     }
+                                    onClick={() => {
+                                       handleTippyRight();
+
+                                       storage.setCurrentUrl(path.change_password);
+                                       storage.setCurrentPageLv1("");
+                                       storage.setCurrentPageLv2("Đổi mật khẩu");
+                                       storage.setCurrentControllerName("");
+                                    }}
                                  />
 
                                  <div className='header-right__dropdown-item' onClick={handeSubmitLogout}>
@@ -152,15 +166,15 @@ function Header() {
                         </div>
                      )}
                      visible={showTippyRight}
-                     onClickOutside={() => setShowTippyRight(!showTippyRight)}
+                     onClickOutside={handleTippyRight}
                   >
                      <div className="header-right__item-wrapper">
-                        <div className="header-right__item d-md-none" onClick={() => setShowTippyRight(!showTippyRight)}>
+                        <div className="header-right__item d-md-none" onClick={handleTippyRight}>
                            <i className="fa-solid fa-circle-user"></i>
                            <span>{getFullName()}</span>
                         </div>
 
-                        <button className="header-right__btn-more d-none d-md-block" onClick={() => setShowTippyRight(!showTippyRight)}>
+                        <button className="header-right__btn-more d-none d-md-block" onClick={handleTippyRight}>
                            <i className="fa-solid fa-ellipsis-vertical"></i>
                         </button>
                      </div>
@@ -168,40 +182,6 @@ function Header() {
                </li>
             </ul>
          </div>
-
-         {/* <div className="header-right-sm d-none d-md-block">
-            <Tippy
-               interactive
-               render={(attrs) => (
-                  <div className="header-right__dropdown" tabIndex={-1} {...attrs}>
-                     <PopperWrapper>
-                        <div className='header-right__dropdown-list'>
-                           <NavLink
-                              to={path.change_password}
-                              className='header-right__dropdown-item'
-                              children={
-                                 <>
-                                    <i className="fa-solid fa-repeat"></i>
-                                    <span>Đổi mật khẩu</span>
-                                 </>
-                              }
-                           />
-                           <div className='header-right__dropdown-item' onClick={handeSubmitLogout}>
-                              <i className="fa-solid fa-right-from-bracket"></i>
-                              <span>Đăng xuất</span>
-                           </div>
-                        </div>
-                     </PopperWrapper>
-                  </div>
-               )}
-               visible={showTippyRight}
-               onClickOutside={handleShowTippyRight}
-            >
-               <button className="header-right-sm__btn-more" onClick={handleShowTippyRight}>
-                  <i className="fa-solid fa-ellipsis-vertical"></i>
-               </button>
-            </Tippy>
-         </div> */}
       </header>
    );
 }

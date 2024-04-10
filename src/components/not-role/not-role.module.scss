@@ -1,0 +1,23 @@
+.notrole-container {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   .pic {
+      background-image: url("src/assets/images/pic_warning.png");
+      width: 100%;
+      height: 300px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+   }
+
+   .text {
+      font-size: 20px;
+      font-weight: 600;
+      color: #293b49;
+      font-family: var(--font-family-primary);
+   }
+}

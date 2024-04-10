@@ -4,15 +4,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Account as AccountType } from "~/types/account-type";
 import { accountSchema } from "~/utils/rules";
 import { Button, TextBox, Textarea } from "~/components/controls";
+import { PhanQuyen } from "~/types/auth-type";
 
 
 type TFormData = AccountType;
 interface IProps {
    onSubmit?: (values: TFormData) => void;
+   roles: PhanQuyen;
 }
 
 function FormData(props: IProps) {
-   const { onSubmit } = props;
+   const { onSubmit, roles } = props;
 
    const formRHF = useForm<TFormData>({
       resolver: yupResolver(accountSchema)
@@ -84,14 +86,18 @@ function FormData(props: IProps) {
                ]}
             /> */}
 
-            <Button
-               variant="contained"
-               type='submit'
-               //disabled={!formRHF.formState.isValid}
-               leftIcon={<i className="fa-solid fa-circle-check"></i>}
-            >
-               Submit
-            </Button>
+            {
+               roles.IsThem &&
+               <Button
+                  variant="contained"
+                  type='submit'
+                  //disabled={!formRHF.formState.isValid}
+                  leftIcon={<i className="fa-solid fa-circle-check"></i>}
+               >
+                  Submit
+               </Button>
+            }
+
          </form>
       </div>
    );

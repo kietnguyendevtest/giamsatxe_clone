@@ -9,9 +9,9 @@ interface AppContextInterface {
    groupRole: NhomQuyen[];
    menuRole: Menu[],
    setRole: PhanQuyen[],
-
    setGroupRole: React.Dispatch<React.SetStateAction<any>>;
    setMenuRole: React.Dispatch<React.SetStateAction<any>>;
+   setSetRole: React.Dispatch<React.SetStateAction<any>>;
 
    refresh: () => void;
    reset: () => void;
@@ -26,6 +26,7 @@ const initialAppContext: AppContextInterface = {
    setRole: [],
    setGroupRole: () => null,
    setMenuRole: () => null,
+   setSetRole: () => null,
 
    refresh: () => null,
    reset: () => null
@@ -46,7 +47,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
    }
 
    const refresh = () => {
-
       setGroupRole(JSON.parse(storage.getGroupRole()) || []);
       setMenuRole(JSON.parse(storage.getMenuRole()) || []);
       setSetRole(JSON.parse(storage.getSetRole()) || []);
@@ -63,6 +63,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
             setRole,
             setGroupRole,
             setMenuRole,
+            setSetRole,
 
             refresh,
             reset,

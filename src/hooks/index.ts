@@ -1,8 +1,4 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import useRouteElements from './use-route-elements';
+import useSetRole from './use-set-role';
 
-export { useRouteElements }
-
-export interface FontAwesomeIconProps {
-   icon: IconProp | any
-}
+export { useRouteElements, useSetRole }

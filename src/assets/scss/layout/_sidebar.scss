@@ -31,6 +31,7 @@
    }
 
    .ps-menu-button {
+      &.ps-active,
       &.active {
          background: var(--sidebar-active-bg);
       }

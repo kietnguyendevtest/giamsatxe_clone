@@ -60,15 +60,15 @@ export interface Menu {
 
 ///--Phân quyền
 export interface PhanQuyen {
-   ControllerName: string,
-   IsXem: boolean,
-   IsThem: boolean,
-   IsCapNhat: boolean,
-   IsXoa: boolean,
-   IsDuyet: boolean,
-   IsThongKe: boolean,
-   IsImport: boolean,
-   IsExport: boolean
+   ControllerName?: string,
+   IsXem?: boolean,
+   IsThem?: boolean,
+   IsCapNhat?: boolean,
+   IsXoa?: boolean,
+   IsDuyet?: boolean,
+   IsThongKe?: boolean,
+   IsImport?: boolean,
+   IsExport?: boolean
 }
 
 

@@ -1,14 +1,15 @@
-// import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
-// import { storage } from "~/utils";
-// import path from "~/constants/path";
+import { storage } from "~/utils";
+import path from "~/constants/path";
 
 function NotFound() {
-    // useEffect(() => {
-    //     storage.setCurrentUrl(path.home);
-    //     storage.setCurrentPage("");
-    //     storage.setCurrentControllerName("");
-    // }, []);
+    useLayoutEffect(() => {
+        storage.setCurrentUrl(path.home);
+        storage.setCurrentPageLv1("");
+        storage.setCurrentPageLv2("");
+        storage.setCurrentControllerName("");
+    }, []);
 
     return (
         <div className="notfoundpage-container">

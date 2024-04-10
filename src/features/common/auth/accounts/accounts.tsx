@@ -1,13 +1,16 @@
+import { useSetRole } from "~/hooks";
+import NotRole from "~/components/not-role";
+import { Account as AccountType } from "~/types/account-type";
 import GridData from "./grid-data";
 import FormData from "./form-data";
-import { Account as AccountType } from "~/types/account-type";
 
 type TFormData = AccountType;
 
 function Accounts() {
+    const roles = useSetRole();
 
     const handleSubmit = (values: TFormData) => {
-        console.log("handleSubmit", values);
+        alert("Submit Form value: " + JSON.stringify(values));
 
         // loginMutation.mutate(data, {
         //    onSuccess: (data) => {
@@ -32,10 +35,15 @@ function Accounts() {
     }
 
     return (
-        <div>
-            <FormData onSubmit={handleSubmit} />
-            <GridData />
-        </div>
+        <>
+            {roles && roles.IsXem ?
+                <>
+                    <FormData onSubmit={handleSubmit} roles={roles} />
+                    <GridData />
+                </>
+                : <NotRole />
+            }
+        </>
     );
 }
 
