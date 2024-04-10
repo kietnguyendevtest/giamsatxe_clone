@@ -9,6 +9,19 @@ export const authShema = yup.object({
       .required('Vui lòng nhập dữ liệu'),
 })
 
+export const changePasswordShema = yup.object({
+   MatKhauCu: yup
+      .string()
+      .required('Vui lòng nhập dữ liệu'),
+   MatKhauMoi: yup
+      .string()
+      .required('Vui lòng nhập dữ liệu'),
+   XacNhanMatKhauMoi: yup
+      .string()
+      .required('Vui lòng nhập dữ liệu')
+      .oneOf([yup.ref('MatKhauMoi')], 'Xác nhận mật khẩu mới không khớp'),
+})
+
 export const accountSchema = yup.object({
    Email: yup
       .string()

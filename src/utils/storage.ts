@@ -96,6 +96,17 @@ const storage = {
          return "";
       }
    },
+   getUserName: () => {
+      const infoProfile = storage.getProfile();
+      let result = "";
+
+      if (infoProfile) {
+         const jsonInfo = JSON.parse(infoProfile);
+         result = jsonInfo.UserName.toString();
+      }
+
+      return result;
+   },
    getCurrentUrl: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_CURRENT_URL) || "";

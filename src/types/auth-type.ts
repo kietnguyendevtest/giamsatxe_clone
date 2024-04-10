@@ -1,10 +1,13 @@
 import * as yup from 'yup'
 //import { Account } from './account-type'
 import { SuccessResponse } from './utils-type'
-import { authShema } from '~/utils/rules'
+import { authShema, changePasswordShema } from '~/utils/rules'
 
 ///--Login
 export type AuthLogin = yup.InferType<typeof authShema>
+
+///--Change Password
+export type ChangePassword = yup.InferType<typeof changePasswordShema>
 
 ///--Account
 export interface Account {

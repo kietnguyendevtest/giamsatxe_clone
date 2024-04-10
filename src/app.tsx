@@ -15,8 +15,13 @@ function App() {
    const routeElements = useRouteElements();
 
    useEffect(() => {
-      if (storage.getAccessToken()) {
-         refresh();
+      try {
+         if (storage.getAccessToken()) {
+            refresh();
+         }
+      } catch (error) {
+         storage.clearAll();
+         window.location.reload();
       }
    }, []);
 

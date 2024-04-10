@@ -38,7 +38,7 @@ function TextBox(props: IProps) {
             {rightIcon && <span className="icon-right">{rightIcon}</span>}
             {
                eyeIcon && <span className="icon-eye" onClick={() => setIsShowHidePass(!isShowHidePass)}>
-                  {isShowHidePass ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye"></i>}
+                  {isShowHidePass ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
                </span>
             }
          </div>
