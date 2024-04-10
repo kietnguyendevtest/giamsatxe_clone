@@ -1,4 +1,4 @@
-
+import CryptoJS from 'crypto-js';
 import { toast } from 'react-toastify';
 
 import config from '~/constants/config';
@@ -11,42 +11,41 @@ const storage = {
 
    ///--Set localStorage
    setAccessToken: (access_token: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_ACCESS_TOKEN, access_token);
+      return localStorage.setItem(config.KEY_STORAGE_ACCESS_TOKEN, CryptoJS.Rabbit.encrypt(access_token, config.SECRET_ENCRYPTION).toString());
    },
    setRefreshToken: (refresh_token: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_REFRESH_TOKEN, refresh_token);
+      return localStorage.setItem(config.KEY_STORAGE_REFRESH_TOKEN, CryptoJS.Rabbit.encrypt(refresh_token, config.SECRET_ENCRYPTION).toString());
    },
    setGroupRole: (group_role: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_GROUP_ROLE, group_role);
+      return localStorage.setItem(config.KEY_STORAGE_GROUP_ROLE, CryptoJS.Rabbit.encrypt(group_role, config.SECRET_ENCRYPTION).toString());
    },
    setMenuRole: (menu_role: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_MENU_ROLE, menu_role);
+      return localStorage.setItem(config.KEY_STORAGE_MENU_ROLE, CryptoJS.Rabbit.encrypt(menu_role, config.SECRET_ENCRYPTION).toString());
    },
    setSetRole: (set_role: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_SET_ROLE, set_role);
+      return localStorage.setItem(config.KEY_STORAGE_SET_ROLE, CryptoJS.Rabbit.encrypt(set_role, config.SECRET_ENCRYPTION).toString());
    },
    setProfile: (profile: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_PROFILE, profile);
+      return localStorage.setItem(config.KEY_STORAGE_PROFILE, CryptoJS.Rabbit.encrypt(profile, config.SECRET_ENCRYPTION).toString());
    },
    setCurrentUrl: (current_url: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_CURRENT_URL, current_url);
+      return localStorage.setItem(config.KEY_STORAGE_CURRENT_URL, CryptoJS.Rabbit.encrypt(current_url, config.SECRET_ENCRYPTION).toString());
    },
    setCurrentPageLv1: (current_page_lv1: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_CURRENT_PAGE_LV1, current_page_lv1);
+      return localStorage.setItem(config.KEY_STORAGE_CURRENT_PAGE_LV1, CryptoJS.Rabbit.encrypt(current_page_lv1, config.SECRET_ENCRYPTION).toString());
    },
    setCurrentPageLv2: (current_page_lv2: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_CURRENT_PAGE_LV2, current_page_lv2);
+      return localStorage.setItem(config.KEY_STORAGE_CURRENT_PAGE_LV2, CryptoJS.Rabbit.encrypt(current_page_lv2, config.SECRET_ENCRYPTION).toString());
    },
    setCurrentControllerName: (current_controller_name: string) => {
-      return localStorage.setItem(config.KEY_STORAGE_CURRENT_CONTROLLER_NAME, current_controller_name);
+      return localStorage.setItem(config.KEY_STORAGE_CURRENT_CONTROLLER_NAME, CryptoJS.Rabbit.encrypt(current_controller_name, config.SECRET_ENCRYPTION).toString());
    },
-
 
    ///--Get localStorage
    getAccessToken: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_ACCESS_TOKEN) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
@@ -55,7 +54,7 @@ const storage = {
    getRefreshToken: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_REFRESH_TOKEN) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
@@ -64,7 +63,7 @@ const storage = {
    getGroupRole: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_GROUP_ROLE) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
@@ -73,7 +72,7 @@ const storage = {
    getMenuRole: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_MENU_ROLE) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
@@ -82,7 +81,7 @@ const storage = {
    getSetRole: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_SET_ROLE) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
@@ -91,7 +90,7 @@ const storage = {
    getProfile: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_PROFILE) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
@@ -100,7 +99,7 @@ const storage = {
    getCurrentUrl: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_CURRENT_URL) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
@@ -109,7 +108,7 @@ const storage = {
    getCurrentPageLv1: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_CURRENT_PAGE_LV1) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
@@ -118,7 +117,7 @@ const storage = {
    getCurrentPageLv2: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_CURRENT_PAGE_LV2) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
@@ -127,7 +126,7 @@ const storage = {
    getCurrentControllerName: () => {
       try {
          const result = localStorage.getItem(config.KEY_STORAGE_CURRENT_CONTROLLER_NAME) || "";
-         return result;
+         return CryptoJS.Rabbit.decrypt(result, config.SECRET_ENCRYPTION).toString(CryptoJS.enc.Utf8);
       } catch (error) {
          toast.error("Lỗi xác thực tài khoản. Vui lòng đăng nhập lại!");
          return "";
