@@ -77,6 +77,7 @@ function Header() {
                                  <i className="fa-solid fa-hand-point-right"></i>
                                  <span>Quản lý tài sản</span>
                               </div>
+
                               <div className="header-left__app-item">
                                  <i className="fa-solid fa-hand-point-right"></i>
                                  <span>PMC KHC|NSS</span>
@@ -84,6 +85,35 @@ function Header() {
                               <div className="header-left__app-item">
                                  <i className="fa-solid fa-hand-point-right"></i>
                                  <span>PMC AHT</span>
+                              </div>
+                              <div className="header-left__app-item">
+                                 <i className="fa-solid fa-hand-point-right"></i>
+                                 <span>PMC VMS</span>
+                              </div>
+                              <div className="header-left__app-item">
+                                 <i className="fa-solid fa-hand-point-right"></i>
+                                 <span>PMC TMS</span>
+                              </div>
+                              <div className="header-left__app-item">
+                                 <i className="fa-solid fa-hand-point-right"></i>
+                                 <span>PMC DNS</span>
+                              </div>
+
+                              <div className="header-left__app-item">
+                                 <i className="fa-solid fa-hand-point-right"></i>
+                                 <span>eDelivery KHC|NSS</span>
+                              </div>
+                              <div className="header-left__app-item">
+                                 <i className="fa-solid fa-hand-point-right"></i>
+                                 <span>eDelivery AHT</span>
+                              </div>
+                              <div className="header-left__app-item">
+                                 <i className="fa-solid fa-hand-point-right"></i>
+                                 <span>eDelivery TMS</span>
+                              </div>
+                              <div className="header-left__app-item">
+                                 <i className="fa-solid fa-hand-point-right"></i>
+                                 <span>eDelivery DNS</span>
                               </div>
                            </div>
                         </PopperWrapper>

@@ -1,7 +1,7 @@
 import { useSetRole } from "~/hooks";
 import NotRole from "~/components/not-role";
 import { Account as AccountType } from "~/types/account-type";
-import GridData from "./grid-data";
+// import GridData from "./grid-data";
 import FormData from "./form-data";
 
 type TFormData = AccountType;
@@ -39,7 +39,7 @@ function Accounts() {
             {roles && roles.IsXem ?
                 <>
                     <FormData onSubmit={handleSubmit} roles={roles} />
-                    <GridData />
+                    {/* <GridData /> */}
                 </>
                 : <NotRole />
             }

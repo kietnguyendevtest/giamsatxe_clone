@@ -43,23 +43,46 @@ function FormData(props: IProps) {
             />
             <p>{formRHF.formState.errors.Email?.message}</p> */}
 
-            <TextBox
-               formRHF={formRHF}
-               name='Email'
-               label="Email"
-            />
+            <div className="row">
+               <div className="col-3 col-xl-6 col-lg-12">
+                  <TextBox
+                     formRHF={formRHF}
+                     name='UserName'
+                     label="User name"
+                     required
+                  />
+               </div>
+               <div className="col-3 col-xl-6 col-lg-12">
+                  <TextBox
+                     formRHF={formRHF}
+                     name='Email'
+                     label="Email"
+                     required
+                  />
+               </div>
+               <div className="col-3 col-xl-6 col-lg-12">
+                  <TextBox
+                     formRHF={formRHF}
+                     name='SoDienThoai'
+                     label="Số điện thoại"
+                  />
+               </div>
+               <div className="col-3 col-xl-6 col-lg-12">
+                  <Textarea
+                     formRHF={formRHF}
+                     name='Note'
+                     label="Ghi chú"
+                  />
+               </div>
+            </div>
 
-            <Textarea
-               formRHF={formRHF}
-               name='UserName'
-               label="User name"
-            />
 
-            <TextBox
-               formRHF={formRHF}
-               name='SoDienThoai'
-               label="Số điện thoại"
-            />
+
+
+
+
+
+
 
             {/* <SelectBox
                formRHF={formRHF}

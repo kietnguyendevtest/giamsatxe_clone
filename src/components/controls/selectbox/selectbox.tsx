@@ -56,7 +56,7 @@ function SelectBox(props: IProps) {
     const value = multi ? getValueFromMulti() : getValueFromSingle();
     const onChangeHandler = multi ? onChangeMulti : onChangeSingle;
 
-    console.log("value", value);
+    console.log("value selected", value);
 
     return (
         <div className='form-control'>
