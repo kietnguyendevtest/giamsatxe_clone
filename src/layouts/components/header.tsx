@@ -73,9 +73,14 @@ function Header() {
                                  <i className="fa-solid fa-hand-point-right"></i>
                                  <span>Quản lý đặt hàng</span>
                               </div>
-                              <div className="header-left__app-item active">
+                              <div className="header-left__app-item">
                                  <i className="fa-solid fa-hand-point-right"></i>
                                  <span>Quản lý tài sản</span>
+                              </div>
+
+                              <div className="header-left__app-item active">
+                                 <i className="fa-solid fa-hand-point-right"></i>
+                                 <span>App kiểm liệu</span>
                               </div>
 
                               <div className="header-left__app-item">
@@ -126,7 +131,7 @@ function Header() {
                      <div className="header-left__app-choose">
                         <div className="app-choose--text">
                            <i className="fa-solid fa-layer-group"></i>
-                           <span>Quản lý tài sản</span>
+                           <span>App kiểm liệu</span>
                            <i className="fa-solid fa-caret-down"></i>
                         </div>
                      </div>

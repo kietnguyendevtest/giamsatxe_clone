@@ -17,6 +17,15 @@ function Sidebar() {
       setCollapsed(prev => !prev);
    }
 
+   const handleClickMenu = (_url: string, _pagelv2: string) => {
+      isMobile && handleCollapsed();
+
+      storage.setCurrentUrl(_url);
+      storage.setCurrentPageLv1(`BP Bảo vệ`);
+      storage.setCurrentPageLv2(_pagelv2);
+      //storage.setCurrentControllerName(`${item2.ControllerName}`);
+   }
+
    return (
       <>
          <div
@@ -59,6 +68,23 @@ function Sidebar() {
                >
                   Trang chủ
                </MenuItem>
+
+               <SubMenu
+                  label="BP Bảo vệ"
+                  icon={<i className="fa-solid fa-user-shield"></i>}
+               >
+                  <MenuItem icon={<i className='fa-regular fa-hand-point-right'></i>}
+                     component={<NavLink to={path.kcs__xe_vao} onClick={() => handleClickMenu(path.kcs__xe_vao, "Xe vào")} />}
+                  >
+                     Xe vào
+                  </MenuItem>
+                  <MenuItem
+                     icon={<i className='fa-regular fa-hand-point-right'></i>}
+                     component={<NavLink to={path.kcs__xe_ra} onClick={() => handleClickMenu(path.kcs__xe_ra, "Xe ra")} />}
+                  >
+                     Xe ra
+                  </MenuItem>
+               </SubMenu>
 
                {groupRole && groupRole.length > 0
                   && groupRole.map((item, index) => {

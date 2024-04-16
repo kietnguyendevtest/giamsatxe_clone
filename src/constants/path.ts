@@ -14,7 +14,9 @@ const path = {
   auth__setting_role2: '/auth/setting-role',
   auth__accounts2: '/auth/accounts',
 
-  ///-pmc
+  ///-kcs
+  kcs__xe_vao: '/kcs/xe-vao',
+  kcs__xe_ra: '/kcs/xe-ra',
 
 } as const
 

@@ -17,6 +17,10 @@ import MenuRole from "~/features/common/auth/menu-role";
 import SettingRole from "~/features/common/auth/setting-role";
 import Accounts from "~/features/common/auth/accounts";
 
+///--Features kcs
+import XeVao from "~/features/kcs/xe-vao";
+import XeRa from "~/features/kcs/xe-ra";
+
 function ProtectedRoute() {
    const { isAuthenticated } = useContext(AppContext)
    return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
@@ -93,6 +97,24 @@ function useRouteElements() {
                element: (
                   <MainLayout>
                      <Accounts />
+                  </MainLayout>
+               )
+            },
+
+            ///--Features kcs
+            {
+               path: path.kcs__xe_vao,
+               element: (
+                  <MainLayout>
+                     <XeVao />
+                  </MainLayout>
+               )
+            },
+            {
+               path: path.kcs__xe_ra,
+               element: (
+                  <MainLayout>
+                     <XeRa />
                   </MainLayout>
                )
             },

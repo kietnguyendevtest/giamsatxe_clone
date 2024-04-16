@@ -7,6 +7,12 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AppProvider } from './contexts/app-context'
 import App from './app'
 
+declare global {
+   interface Window {
+      NDEFReader: any;
+   }
+}
+
 const queryClient = new QueryClient({
    defaultOptions: {
       queries: {
