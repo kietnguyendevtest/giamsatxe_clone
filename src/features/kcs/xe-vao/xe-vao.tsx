@@ -1,37 +1,62 @@
-import { useState } from "react";
+
+import { useCallback, useRef, useState } from "react";
+import Webcam from 'react-webcam';
+import Tesseract from 'tesseract.js';
 
 function XeVao() {
-   const [message, setMessage] = useState('');
+   const [image, setImage] = useState(null);
+   const webcamRef = useRef<any>(null);
+   const [ocrText, setOcrText] = useState('');
 
-   const onWrite = async (message: any) => {
-      try {
-         const ndef = new window.NDEFReader();
-         // This line will avoid showing the native NFC UI reader
-         await ndef.scan();
-         await ndef.write({ records: [{ recordType: "text", data: message }] });
-         alert(`Lưu thành công BSX: ${message}`);
-      } catch (error) {
-         alert(`Thiết bị không hỗ trợ`);
-      }
-   }
+   const capture = useCallback(() => {
+      setOcrText('');
 
-   const handleWrite = (e: any) => {
-      e.preventDefault();
-      onWrite(message);
-      setMessage('');
+      const imageSrc = webcamRef.current.getScreenshot();
+      setImage(imageSrc);
+
+      //----Đọc văn bản từ hình ảnh
+      Tesseract.recognize(imageSrc)
+         .then(({ data: { text } }) => {
+            setOcrText(text);
+         })
+         .catch(error => {
+            console.error('Lỗi khi đọc văn bản từ hình ảnh:', error);
+         });
+   }, [webcamRef]);
+
+
+   const videoConstraints = {
+      width: 250,
+      height: 250,
+      facingMode: "environment"
    };
 
    return (
       <div>
-         <form onSubmit={handleWrite}>
-            <div className="writer-container">
-               <input type="text" placeholder="Nhập bsx..." value={message} onChange={(e) => setMessage(e.target.value)}></input>
-               <hr />
-               <button className="btn" type="submit">
-                  Click Quét thẻ từ
-               </button>
+         <div>
+            <Webcam
+               audio={false}
+               ref={webcamRef}
+               screenshotFormat="image/jpeg"
+               videoConstraints={videoConstraints}
+            />
+         </div>
+         <br />
+         <button onClick={capture}>Chụp ảnh</button>
+         <br />
+         {image && (
+            <div>
+               <div>
+                  <span>Văn bản từ hình ảnh:</span>
+                  <b>{ocrText || 'Đang xử lý...'}</b>
+               </div>
+
+               <br />
+
+               <h2>Ảnh đã chụp:</h2>
+               <img src={image} alt="Chụp ảnh" />
             </div>
-         </form>
+         )}
       </div>
    );
 }
