@@ -19,10 +19,39 @@ function TextBox(props: IProps) {
       name,
       type, label, required,
       leftIcon, rightIcon, eyeIcon,
+      className,
       ...rest
    } = props;
 
    const [isShowHidePass, setIsShowHidePass] = useState<boolean>(false);
+
+   // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+   //    if (type !== "number")
+   //       return;
+
+   //    let newValue = e.target.value;
+
+   //    // Kiểm tra xem giá trị mới có phù hợp với định dạng số không
+   //    if (!/^(-?\d*\.?\d*)$/.test(newValue)) {
+   //       // Nếu không phù hợp, loại bỏ tất cả các ký tự ngoại trừ số, dấu trừ và dấu chấm thập phân
+   //       newValue = newValue.replace(/[^\d.-]/g, '');
+
+   //       // Kiểm tra xem giá trị mới có chứa nhiều hơn một dấu trừ hoặc một dấu chấm không
+   //       const minusCount = (newValue.match(/-/g) || []).length;
+   //       const dotCount = (newValue.match(/\./g) || []).length;
+
+   //       if (minusCount > 1 || dotCount > 1) {
+   //          // Loại bỏ ký tự cuối cùng nếu vượt quá một dấu trừ hoặc một dấu chấm
+   //          newValue = newValue.slice(0, -1);
+   //       }
+   //    } else if (newValue.startsWith('.')) {
+   //       // Nếu giá trị mới bắt đầu bằng dấu chấm, đặt giá trị của ô nhập về rỗng
+   //       newValue = '';
+   //    }
+
+   //    e.target.value = newValue;
+   // };
+
 
    return (
       <div className='form-control'>
@@ -30,8 +59,10 @@ function TextBox(props: IProps) {
          <div className='textbox-control'>
             <input
                {...formRHF?.register(name)}
-               className='form-input'
+               className={'form-input ' + className}
                type={eyeIcon ? (isShowHidePass ? "text" : "password") : type}
+               autoComplete="off"
+               // /onChange={handleInputChange}
                {...rest}
             />
             {leftIcon && <span className="icon-left">{leftIcon}</span>}

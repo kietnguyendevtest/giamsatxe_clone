@@ -1,22 +1,22 @@
 const path = {
-
-  ///--Common
   home: '/',
   login: '/login',
   change_password: '/change-password',
 
+  ///--Common
   auth__group_role: '/nhom-quyen',
   auth__menu_role: '/menu',
   auth__setting_role: '/vai-tro',
   auth__accounts: '/tai-khoan',
-  auth__group_role2: '/auth/group-role',
-  auth__menu_role2: '/auth/menu-role',
-  auth__setting_role2: '/auth/setting-role',
-  auth__accounts2: '/auth/accounts',
+  // auth__group_role2: '/common/auth/group-role',
+  // auth__menu_role2: '/common/auth/menu-role',
+  // auth__setting_role2: '/common/auth/setting-role',
+  // auth__accounts2: '/common/auth/accounts',
 
-  ///-kcs
-  kcs__xe_vao: '/kcs/xe-vao',
-  kcs__xe_ra: '/kcs/xe-ra',
+  ///--Kcs App
+  khcnss__kcs_app__security__vehicle_in: '/khcnss/kcs-app/security/vehicle-in',
+  khcnss__kcs_app__security__vehicle_out: '/khcnss/kcs-app/security/vehicle-out',
+  khcnss__kcs_app__kcs__scan_card: '/khcnss/kcs-app/kcs/scan-card',
 
 } as const
 

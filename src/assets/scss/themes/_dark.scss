@@ -24,9 +24,14 @@ html.dark {
     --footer-layout-bg: #171c28;
     --footer-border-color: #636363;
 
-    ///
+    /// Bordered Section
+    --border-section-color: #d9d9d9;
+
+    /// Form Control
     --form-control-color: #dfdfdf;
     --form-label-color: #dfdfdf;
+    --form-control-color-disabled: #ababab;
+    --form-control-border-color-disabled: #ababab;
 
     --btn-vrtext-color: #fff;
 }

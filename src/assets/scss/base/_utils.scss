@@ -24,3 +24,82 @@ $display-values: block, flex, grid, none;
         @include make-display($breakpoint);
     }
 }
+
+// -------------------------------------------------------------
+
+.fw-600 {
+    font-weight: 600 !important;
+}
+.fz-10 {
+    font-size: 1rem !important;
+}
+.fz-11 {
+    font-size: 1.1rem !important;
+}
+.fz-12 {
+    font-size: 1.2rem !important;
+}
+.fz-13 {
+    font-size: 1.3rem !important;
+}
+.fz-14 {
+    font-size: 1.4rem !important;
+}
+.fz-15 {
+    font-size: 1.5rem !important;
+}
+.fz-16 {
+    font-size: 1.6rem !important;
+}
+.fz-17 {
+    font-size: 1.7rem !important;
+}
+.fz-18 {
+    font-size: 1.8rem !important;
+}
+.fz-19 {
+    font-size: 1.9rem !important;
+}
+.fz-20 {
+    font-size: 2rem !important;
+}
+.fz-21 {
+    font-size: 2.1rem !important;
+}
+.fz-22 {
+    font-size: 2.2rem !important;
+}
+.fz-23 {
+    font-size: 2.3rem !important;
+}
+.fz-24 {
+    font-size: 2.4rem !important;
+}
+.fz-25 {
+    font-size: 2.5rem !important;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
+}
+.mt-10 {
+    margin-top: 10px !important;
+}
+.mt-15 {
+    margin-top: 15px !important;
+}
+.mt-20 {
+    margin-top: 20px !important;
+}
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+.mb-10 {
+    margin-bottom: 10px !important;
+}
+.mb-15 {
+    margin-bottom: 15px !important;
+}
+.mb-20 {
+    margin-bottom: 20px !important;
+}

@@ -1,9 +1,8 @@
-
 import { useCallback, useRef, useState } from "react";
 import Webcam from 'react-webcam';
 import Tesseract from 'tesseract.js';
 
-function XeVao() {
+function VehicleIn() {
    const [image, setImage] = useState(null);
    const webcamRef = useRef<any>(null);
    const [ocrText, setOcrText] = useState('');
@@ -61,4 +60,4 @@ function XeVao() {
    );
 }
 
-export default XeVao;
+export default VehicleIn;

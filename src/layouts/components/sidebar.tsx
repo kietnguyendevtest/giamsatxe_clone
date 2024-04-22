@@ -17,11 +17,11 @@ function Sidebar() {
       setCollapsed(prev => !prev);
    }
 
-   const handleClickMenu = (_url: string, _pagelv2: string) => {
+   const handleClickMenu = (_url: string, _pagelv1: string, _pagelv2: string) => {
       isMobile && handleCollapsed();
 
       storage.setCurrentUrl(_url);
-      storage.setCurrentPageLv1(`BP Bảo vệ`);
+      storage.setCurrentPageLv1(_pagelv1);
       storage.setCurrentPageLv2(_pagelv2);
       //storage.setCurrentControllerName(`${item2.ControllerName}`);
    }
@@ -71,18 +71,38 @@ function Sidebar() {
 
                <SubMenu
                   label="BP Bảo vệ"
-                  icon={<i className="fa-solid fa-user-shield"></i>}
+                  icon={<i className="fa-solid fa-mobile-screen-button fz-17"></i>}
                >
                   <MenuItem icon={<i className='fa-regular fa-hand-point-right'></i>}
-                     component={<NavLink to={path.kcs__xe_vao} onClick={() => handleClickMenu(path.kcs__xe_vao, "Xe vào")} />}
+                     component={<NavLink to={path.khcnss__kcs_app__security__vehicle_in}
+                        onClick={() => handleClickMenu(path.khcnss__kcs_app__security__vehicle_in, "BP Bảo vệ", "Xe vào")} />}
                   >
                      Xe vào
                   </MenuItem>
                   <MenuItem
                      icon={<i className='fa-regular fa-hand-point-right'></i>}
-                     component={<NavLink to={path.kcs__xe_ra} onClick={() => handleClickMenu(path.kcs__xe_ra, "Xe ra")} />}
+                     component={<NavLink to={path.khcnss__kcs_app__security__vehicle_out}
+                        onClick={() => handleClickMenu(path.khcnss__kcs_app__security__vehicle_out, "BP Bảo vệ", "Xe ra")} />}
                   >
                      Xe ra
+                  </MenuItem>
+               </SubMenu>
+
+               <SubMenu
+                  label="BP Kiểm liệu"
+                  icon={<i className="fa-solid fa-mobile-screen-button fz-17"></i>}
+               >
+                  <MenuItem icon={<i className='fa-regular fa-hand-point-right'></i>}
+                     component={<NavLink to={path.khcnss__kcs_app__kcs__scan_card}
+                        onClick={() => handleClickMenu(path.khcnss__kcs_app__kcs__scan_card, "BP Kiểm liệu", "Quét thẻ")} />}
+                  >
+                     Quét thẻ
+                  </MenuItem>
+                  <MenuItem
+                     icon={<i className='fa-regular fa-hand-point-right'></i>}
+                     component={<NavLink to='*' />}
+                  >
+                     Danh sách KL chưa duyệt
                   </MenuItem>
                </SubMenu>
 

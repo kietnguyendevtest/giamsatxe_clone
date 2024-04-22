@@ -18,8 +18,9 @@ import SettingRole from "~/features/common/auth/setting-role";
 import Accounts from "~/features/common/auth/accounts";
 
 ///--Features kcs
-import XeVao from "~/features/kcs/xe-vao";
-import XeRa from "~/features/kcs/xe-ra";
+import VehicleIn from "~/features/kcs-app/security-department/vehicle-in";
+import VehicleOut from "~/features/kcs-app/security-department/vehicle-out";
+import ScanCard from "~/features/kcs-app/kcs-department/scan-card";
 
 function ProtectedRoute() {
    const { isAuthenticated } = useContext(AppContext)
@@ -68,6 +69,8 @@ function useRouteElements() {
                   </MainLayout>
                )
             },
+
+            ///--Features Common
             {
                path: path.auth__group_role,
                element: (
@@ -101,20 +104,28 @@ function useRouteElements() {
                )
             },
 
-            ///--Features kcs
+            ///--Features Kcs App
             {
-               path: path.kcs__xe_vao,
+               path: path.khcnss__kcs_app__security__vehicle_in,
                element: (
                   <MainLayout>
-                     <XeVao />
+                     <VehicleIn />
                   </MainLayout>
                )
             },
             {
-               path: path.kcs__xe_ra,
+               path: path.khcnss__kcs_app__security__vehicle_out,
                element: (
                   <MainLayout>
-                     <XeRa />
+                     <VehicleOut />
+                  </MainLayout>
+               )
+            },
+            {
+               path: path.khcnss__kcs_app__kcs__scan_card,
+               element: (
+                  <MainLayout>
+                     <ScanCard />
                   </MainLayout>
                )
             },

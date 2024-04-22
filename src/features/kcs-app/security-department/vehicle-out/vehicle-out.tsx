@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function XeRa() {
+function VehicleOut() {
    const [nfcSupported, setNfcSupported] = useState(false);
    const [nfcReading, setNfcReading] = useState(false);
    const [message, setMessage] = useState('');
@@ -48,47 +48,6 @@ function XeRa() {
          alert('Đã xảy ra lỗi format RFID');
       }
    }
-
-   // const onReading = ({ message, serialNumber }: any) => {
-   //    setSerialNumber(formatRFID(serialNumber) || "");
-
-   //    for (const record of message.records) {
-
-   //       switch (record.recordType) {
-   //          case "text":
-   //             const textDecoder = new TextDecoder(record.encoding);
-   //             setMessage(textDecoder.decode(record.data));
-   //             break;
-   //          case "url":
-   //             // TODO: Read URL record with record data.
-   //             break;
-   //          default:
-   //          // TODO: Handle other records with record data.
-   //       }
-   //    }
-   // };
-
-   // const scan = async () => {
-   //    if ('NDEFReader' in window) {
-   //       try {
-   //          const ndef = new window.NDEFReader();
-   //          await ndef.scan();
-
-   //          alert("Scan started successfully.");
-   //          ndef.onreadingerror = () => {
-   //             alert("Cannot read data from the NFC tag. Try another one?");
-   //          };
-
-   //          ndef.onreading = (event: any) => {
-   //             alert("NDEF message read.");
-   //             onReading(event);
-   //          };
-
-   //       } catch (error) {
-   //          alert(`Error! Scan failed to start: ${error}.`);
-   //       };
-   //    }
-   // };
 
    const startNFCReading = async () => {
       try {
@@ -146,4 +105,4 @@ function XeRa() {
    );
 }
 
-export default XeRa;
+export default VehicleOut;

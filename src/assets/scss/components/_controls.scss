@@ -59,6 +59,12 @@
                 border-bottom-color: var(--primary-color);
             }
         }
+
+        &:disabled {
+            background-color: var(--form-control-color-disabled);
+            border-color: var(--form-control-border-color-disabled);
+            box-shadow: none;
+        }
     }
 
     .textbox-control,
