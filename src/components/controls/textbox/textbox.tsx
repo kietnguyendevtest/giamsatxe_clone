@@ -62,7 +62,7 @@ function TextBox(props: IProps) {
                className={'form-input ' + className}
                type={eyeIcon ? (isShowHidePass ? "text" : "password") : type}
                autoComplete="off"
-               // /onChange={handleInputChange}
+               //onChange={handleInputChange}
                {...rest}
             />
             {leftIcon && <span className="icon-left">{leftIcon}</span>}
