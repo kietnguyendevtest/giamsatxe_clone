@@ -3,6 +3,8 @@ const path = {
   login: '/login',
   change_password: '/change-password',
 
+  demo_form: '/demo-form',
+
   ///--Common
   auth__group_role: '/nhom-quyen',
   auth__menu_role: '/menu',

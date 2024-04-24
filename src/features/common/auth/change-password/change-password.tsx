@@ -56,32 +56,32 @@ function ChangePassword() {
                formRHF={formRHF}
                name='MatKhauCu'
                label="Mật khẩu cũ"
-               required
+               isRequired
                type="password"
-               eyeIcon
+               isEyeIcon
             />
             <TextBox
                formRHF={formRHF}
                name='MatKhauMoi'
                label="Mật khẩu mới"
-               required
+               isRequired
                type="password"
-               eyeIcon
+               isEyeIcon
             />
             <TextBox
                formRHF={formRHF}
                name='XacNhanMatKhauMoi'
                label="Xác nhận mật khẩu mới"
-               required
+               isRequired
                type="password"
-               eyeIcon
+               isEyeIcon
             />
 
             <div className={cx('footer')}>
                <Button
                   variant="contained"
                   type='submit'
-                  disabled={changePasswordMutation.isPending}
+                  isDisabled={changePasswordMutation.isPending}
                   leftIcon={<i className="fa-solid fa-floppy-disk"></i>}
                >
                   Lưu

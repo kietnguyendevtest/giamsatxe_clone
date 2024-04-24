@@ -8,20 +8,20 @@ interface IProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
    formRHF: UseFormReturn<any>;
    name: string;
    label?: string;
-   required?: boolean;
+   isRequired?: boolean;
 }
 
 function Textarea(props: IProps) {
    const {
       formRHF,
       name = '',
-      label, required,
+      label, isRequired,
       ...rest
    } = props;
 
    return (
       <div className='form-control'>
-         {label && <label className={'form-label' + (required ? " required" : "")} htmlFor={name}>{label}</label>}
+         {label && <label className={'form-label' + (isRequired ? " required" : "")} htmlFor={name}>{label}</label>}
          <div className="textarea-control">
             <textarea
                {...formRHF?.register(name)}

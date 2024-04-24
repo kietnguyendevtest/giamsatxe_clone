@@ -21,6 +21,7 @@ import Accounts from "~/features/common/auth/accounts";
 import VehicleIn from "~/features/kcs-app/security-department/vehicle-in";
 import VehicleOut from "~/features/kcs-app/security-department/vehicle-out";
 import ScanCard from "~/features/kcs-app/kcs-department/scan-card";
+import DemoForm from "~/features/common/demo-form";
 
 function ProtectedRoute() {
    const { isAuthenticated } = useContext(AppContext)
@@ -126,6 +127,14 @@ function useRouteElements() {
                element: (
                   <MainLayout>
                      <ScanCard />
+                  </MainLayout>
+               )
+            },
+            {
+               path: path.demo_form,
+               element: (
+                  <MainLayout>
+                     <DemoForm />
                   </MainLayout>
                )
             },

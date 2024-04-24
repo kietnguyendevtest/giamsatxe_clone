@@ -72,7 +72,7 @@ function Login() {
                   name='password'
                   label="Mật khẩu"
                   type="password"
-                  eyeIcon
+                  isEyeIcon
                   leftIcon={<i className="fa-solid fa-lock"></i>}
                />
 
@@ -80,7 +80,7 @@ function Login() {
                   <Button
                      variant="contained"
                      type='submit'
-                     disabled={loginMutation.isPending}
+                     isDisabled={loginMutation.isPending}
                      leftIcon={<i className="fa-solid fa-right-to-bracket"></i>}
                      size='large'
                   >

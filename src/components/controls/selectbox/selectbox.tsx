@@ -9,58 +9,24 @@ interface IProps {
     options: string[] | any;
     label?: string;
     placeholder?: string;
-    disabled?: boolean;
-    required?: boolean;
-    multi?: boolean;
+    isDisabled?: boolean;
+    isRequired?: boolean;
+    isMulti?: boolean;
+    isCloseMenuOnSelect?: boolean;
 }
 
 function SelectBox(props: IProps) {
     const {
         formRHF,
         name,
-        options, label, placeholder, disabled, required, multi,
+        options, label, placeholder = '', isRequired,
+        isDisabled, isMulti, isCloseMenuOnSelect = true,
         ...rest
     } = props;
 
-    console.log("SelectBox formRHF", formRHF.getValues(name)?.value);
-
-    // const { name, value: fieldValue } = field;
-    // const { errors, touched, setFieldValue, setFieldTouched } = form;
-
-    // const handleBlur = () => {
-    //    //setFieldTouched(name);
-    //    formRHF.setFocus(name);
-    // };
-
-    const onChangeSingle = (selected: any) => {
-        formRHF.setValue(name, selected.value);
-    };
-    const onChangeMulti = (selectedArray: any) => {
-        if (selectedArray) {
-            formRHF.setValue(
-                name,
-                selectedArray.map((item: any) => item.value),
-            );
-        } else {
-            formRHF.setValue(name, []);
-        }
-    };
-
-    const getValueFromSingle = () => {
-        return options.find((option: any) => option.value === formRHF.getValues(name)?.value);
-    };
-    const getValueFromMulti = () => {
-        return options.filter((option: any) => formRHF.getValues(name)?.value.includes(option.value));
-    };
-
-    const value = multi ? getValueFromMulti() : getValueFromSingle();
-    const onChangeHandler = multi ? onChangeMulti : onChangeSingle;
-
-    console.log("value selected", value);
-
     return (
         <div className='form-control'>
-            {label && <label className={'form-label' + (required ? " required" : "")} htmlFor={name}>{label}</label>}
+            {label && <label className={'form-label' + (isRequired ? " required" : "")} htmlFor={name}>{label}</label>}
             <Controller
                 name={name}
                 control={formRHF.control}
@@ -71,34 +37,14 @@ function SelectBox(props: IProps) {
                         {...field}
                         options={options}
                         placeholder={placeholder}
-                        isDisabled={disabled}
-                        //isTouched={touched[name]}
-                        isMulti={multi}
+                        isDisabled={isDisabled}
+                        isMulti={isMulti}
+                        blurInputOnSelect={isCloseMenuOnSelect}
+                        closeMenuOnSelect={isCloseMenuOnSelect}
                         {...rest}
-
-                        value={value}
-                        //onBlur={handleBlur}
-                        onChange={onChangeHandler}
                     />
                 )}
             />
-
-            {/* <Select
-            className='select-control'
-            classNamePrefix="react-select"
-            id={name}
-            {...field}
-            options={options}
-            placeholder={placeholder}
-            isDisabled={disabled}
-            isTouched={touched[name]}
-            isMulti={multi}
-            {...rest}
-
-            value={value}
-            onBlur={handleBlur}
-            onChange={onChangeHandler}
-         /> */}
             <TextError>{formRHF?.formState.errors[name]?.message?.toString()}</TextError>
         </div>
     );

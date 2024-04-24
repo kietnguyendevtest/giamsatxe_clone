@@ -49,7 +49,7 @@ function FormData(props: IProps) {
                      formRHF={formRHF}
                      name='UserName'
                      label="User name"
-                     required
+                     isRequired
                   />
                </div>
                <div className="col-3 col-xl-6 col-lg-12">
@@ -57,7 +57,7 @@ function FormData(props: IProps) {
                      formRHF={formRHF}
                      name='Email'
                      label="Email"
-                     required
+                     isRequired
                   />
                </div>
                <div className="col-3 col-xl-6 col-lg-12">
@@ -88,7 +88,7 @@ function FormData(props: IProps) {
                formRHF={formRHF}
                name='role1'
                label="Role 1"
-               required
+               isRequired
                options={[
                   { value: "", label: "--All--" },
                   { value: "strawberry", label: "Strawberry" },
@@ -100,7 +100,7 @@ function FormData(props: IProps) {
                formRHF={formRHF}
                name='role2'
                label="Role 2"
-               required
+               isRequired
                multi
                options={[
                   { value: "1", label: "One" },

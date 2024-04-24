@@ -69,6 +69,18 @@ function Sidebar() {
                   Trang chủ
                </MenuItem>
 
+               <MenuItem
+                  component={
+                     <NavLink
+                        to={path.demo_form}
+                        onClick={() => handleClickMenu(path.demo_form, "Common", "Demo Form")}
+                     />
+                  }
+                  icon={<i className="fa-solid fa-book"></i>}
+               >
+                  Demo Form
+               </MenuItem>
+
                <SubMenu
                   label="BP Bảo vệ"
                   icon={<i className="fa-solid fa-mobile-screen-button fz-17"></i>}

@@ -7,18 +7,18 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
    formRHF: UseFormReturn<any>;
    name: string;
    label?: string;
-   required?: boolean;
+   isRequired?: boolean;
    leftIcon?: JSX.Element;
    rightIcon?: JSX.Element;
-   eyeIcon?: boolean;
+   isEyeIcon?: boolean;
 }
 
 function TextBox(props: IProps) {
    const {
       formRHF,
       name,
-      type, label, required,
-      leftIcon, rightIcon, eyeIcon,
+      type, label, isRequired,
+      leftIcon, rightIcon, isEyeIcon,
       className,
       ...rest
    } = props;
@@ -55,12 +55,12 @@ function TextBox(props: IProps) {
 
    return (
       <div className='form-control'>
-         {label && <label className={'form-label' + (required ? " required" : "")} htmlFor={name}>{label}</label>}
+         {label && <label className={'form-label' + (isRequired ? " required" : "")} htmlFor={name}>{label}</label>}
          <div className='textbox-control'>
             <input
                {...formRHF?.register(name)}
                className={'form-input ' + className}
-               type={eyeIcon ? (isShowHidePass ? "text" : "password") : type}
+               type={isEyeIcon ? (isShowHidePass ? "text" : "password") : type}
                autoComplete="off"
                //onChange={handleInputChange}
                {...rest}
@@ -68,7 +68,7 @@ function TextBox(props: IProps) {
             {leftIcon && <span className="icon-left">{leftIcon}</span>}
             {rightIcon && <span className="icon-right">{rightIcon}</span>}
             {
-               eyeIcon && <span className="icon-eye" onClick={() => setIsShowHidePass(!isShowHidePass)}>
+               isEyeIcon && <span className="icon-eye" onClick={() => setIsShowHidePass(!isShowHidePass)}>
                   {isShowHidePass ? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
                </span>
             }

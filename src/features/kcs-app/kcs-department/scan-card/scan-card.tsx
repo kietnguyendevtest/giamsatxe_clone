@@ -1,38 +1,26 @@
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from 'yup';
 
-import { Account as AccountType } from "~/types/account-type";
 import { Button, TextBox, Textarea } from "~/components/controls";
 import BorderedSection from "~/components/bordered-section";
 
-type TFormData = AccountType;
 
 function ScanCard() {
+   const schema = yup.object()
 
-   const formRHF = useForm<TFormData>()
+   const formRHF = useForm({
+      resolver: yupResolver(schema),
+   })
 
-   const handleSubmit = (values: TFormData) => {
-      alert("Submit Form value: " + JSON.stringify(values));
+   const onFormSubmit = (values: any) => {
+      alert("---->Submit Form value: " + JSON.stringify(values));
+      formRHF.reset();
    }
 
    return (
       <div>
-         <form onSubmit={formRHF.handleSubmit(handleSubmit)} noValidate>
-            {/* <input
-               type="text"
-               placeholder="Email"
-               {...formRHF.register('Email', {
-                  required: {
-                     value: true,
-                     message: 'bắt buộc'
-                  },
-                  minLength: {
-                     value: 3,
-                     message: 'ít nhất 3 ký tự'
-                  }
-               })}
-            />
-            <p>{formRHF.formState.errors.Email?.message}</p> */}
-
+         <form onSubmit={formRHF.handleSubmit(onFormSubmit)} noValidate>
             <TextBox
                formRHF={formRHF}
                name='BienSoXe'
@@ -94,32 +82,6 @@ function ScanCard() {
             <BorderedSection title="Phân bổ trọng lượng hàng" className="mt-20 mb-20" classNameTitle="fz-16">
                ...
             </BorderedSection>
-
-            {/* <SelectBox
-               formRHF={formRHF}
-               name='role1'
-               label="Role 1"
-               required
-               options={[
-                  { value: "", label: "--All--" },
-                  { value: "strawberry", label: "Strawberry" },
-                  { value: "vanilla", label: "Vanilla" },
-               ]}
-            /> */}
-
-            {/* 
-            <SelectBox
-               formRHF={formRHF}
-               name='role2'
-               label="Role 2"
-               required
-               multi
-               options={[
-                  { value: "1", label: "One" },
-                  { value: "2", label: "Two" },
-                  { value: "3", label: "Three" },
-               ]}
-            /> */}
 
             <div style={{ width: "100%" }}>
                <Button

@@ -11,7 +11,7 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    to?: string; href?: string;
    variant?: 'contained' | 'outline' | 'text';
    size?: 'small' | 'medium' | 'large';
-   disabled?: boolean;
+   isDisabled?: boolean;
    leftIcon?: JSX.Element;
    rightIcon?: JSX.Element;
    className?: string;
@@ -24,7 +24,7 @@ function Button(props: IProps) {
       to, href,
       variant = 'contained',
       size = 'medium',
-      disabled = false,
+      isDisabled = false,
       leftIcon,
       rightIcon,
       className = "",
@@ -40,7 +40,7 @@ function Button(props: IProps) {
    }
 
    // Remove event listener when btn is disabled
-   if (disabled) {
+   if (isDisabled) {
       Object.keys(_props).forEach((key) => {
          if (key.startsWith('on') && typeof _props[key] === 'function') {
             delete _props[key];
@@ -60,7 +60,7 @@ function Button(props: IProps) {
       [className]: className,
       [variant]: variant,
       [size]: size,
-      disabled,
+      isDisabled,
    });
 
    return (
