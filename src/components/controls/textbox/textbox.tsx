@@ -8,6 +8,7 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
    name: string;
    label?: string;
    isRequired?: boolean;
+   isDisabled?: boolean;
    leftIcon?: JSX.Element;
    rightIcon?: JSX.Element;
    isEyeIcon?: boolean;
@@ -17,7 +18,7 @@ function TextBox(props: IProps) {
    const {
       formRHF,
       name,
-      type, label, isRequired,
+      type, label, isRequired, isDisabled = false,
       leftIcon, rightIcon, isEyeIcon,
       className,
       ...rest
@@ -62,6 +63,7 @@ function TextBox(props: IProps) {
                className={'form-input ' + className}
                type={isEyeIcon ? (isShowHidePass ? "text" : "password") : type}
                autoComplete="off"
+               disabled={isDisabled}
                //onChange={handleInputChange}
                {...rest}
             />

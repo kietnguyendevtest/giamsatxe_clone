@@ -26,7 +26,7 @@ function ScanCard() {
                name='BienSoXe'
                label="Biển số xe"
                value={'63C-123.45'}
-               disabled
+               isDisabled
                className="fz-24 fw-600"
             />
 
@@ -35,7 +35,7 @@ function ScanCard() {
                name='LoaiXe'
                label="Loại xe"
                value={'Khách hàng'}
-               disabled
+               isDisabled
             />
 
             <TextBox
@@ -43,7 +43,7 @@ function ScanCard() {
                name='SoDienThoai'
                label="Giờ vào"
                value={'20/04/2024 13:39:44'}
-               disabled
+               isDisabled
             />
 
             <TextBox
@@ -51,7 +51,7 @@ function ScanCard() {
                name='SoPhieuCan'
                label="Số phiếu cân"
                value={'PR-N3-20240420-0001'}
-               disabled
+               isDisabled
             />
 
             <BorderedSection title="Trừ tạp chất" className="mt-20 mb-20" classNameTitle="fz-16">

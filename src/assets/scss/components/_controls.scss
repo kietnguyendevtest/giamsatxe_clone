@@ -175,9 +175,23 @@
     }
 
     //Radio
+    .radio-control-wrapper {
+        &.horizontal {
+            display: flex;
+
+            .radio-control + .radio-control {
+                margin: 0;
+                margin-left: 24px;
+            }
+        }
+    }
     .radio-control {
         & + .radio-control {
             margin-top: 5px;
+        }
+
+        &:has(:disabled) label {
+            cursor: not-allowed !important;
         }
 
         label {
@@ -230,9 +244,23 @@
     }
 
     //Checkbox
+    .checkbox-control-wrapper {
+        &.horizontal {
+            display: flex;
+
+            .checkbox-control + .checkbox-control {
+                margin: 0;
+                margin-left: 24px;
+            }
+        }
+    }
     .checkbox-control {
         & + .checkbox-control {
             margin-top: 5px;
+        }
+
+        &:has(:disabled) label {
+            cursor: not-allowed !important;
         }
 
         label {
@@ -294,8 +322,9 @@
 
             input {
                 cursor: pointer;
+                position: relative;
                 width: 100%;
-                padding: 7px 10px;
+                padding: 10px;
             }
         }
 

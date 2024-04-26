@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from 'yup';
 
-import { Button, SelectBox, TextBox, Textarea } from "~/components/controls";
+import { Button, SelectBox, TextBox, Textarea, RadioButtons, Checkbox, DatePicker } from "~/components/controls";
 
 
 const arrOptions = [
@@ -11,19 +12,31 @@ const arrOptions = [
    { value: "2", label: "Đại học" },
    { value: "3", label: "Thạc sĩ" }
 ]
-
 const arrOptionsMulti = [
    { value: "1", label: "Nghe nhạc" },
    { value: "2", label: "Nấu ăn" },
    { value: "3", label: "Xem phim" }
 ]
+const radioOptions = [
+   { value: 'male', text: 'Nam' },
+   { value: 'female', text: 'Nữ' },
+   { value: 'other', text: 'Khác' },
+]
+const checkboxOptions = [
+   { value: 'vn', text: 'Tiếng Việt' },
+   { value: 'en', text: 'Tiếng Anh' },
+   { value: 'jb', text: 'Tiếng Nhật' },
+   { value: 'kr', text: 'Tiếng Hàn' },
+]
 
 const schema = yup.object({
    full_name: yup.string().required('Bắt buộc nhập Họ tên'),
 
+   age: yup.number().typeError('Bắt buộc nhập Tuổi').max(100, 'Tuổi không hợp lệ').required('Bắt buộc nhập Tuổi'),
+
    address: yup.string().required('Bắt buộc nhập Địa chỉ'),
 
-   age: yup.number().typeError('Bắt buộc nhập Tuổi').max(100, 'Tuổi không hợp lệ').required('Bắt buộc nhập Tuổi'),
+   gender: yup.string().required('Bắt buộc chọn Giới tính'),
 
    selectOnly: yup.mixed().required('Vui lòng chọn Trình độ').test('is-selected', 'Bắt buộc chọn Trình độ', (val: any) => !!val && !!val.value),
 
@@ -32,28 +45,38 @@ const schema = yup.object({
          value: yup.string().required(),
       })
    ).required('Bắt buộc chọn Sở thích').min(2, 'Bắt buộc chọn ít nhất 2 Sở thích'),
+
+   date_of_birth: yup.date().max(new Date(), 'Hãy chọn một ngày trong quá khứ'),//.required('Chọn ngày sinh'),
+
+   languages: yup.array().required().typeError('Bắt buộc chọn Ngôn ngữ').min(2, 'Chọn ít nhất 2 ngôn ngữ'),
 })
 
-interface TFormData {
+type TFormData = {
    full_name: string;
    email?: string;
-   address: string;
    age: number;
+   address: string;
+   gender: string;
    selectOnly: any;
    selectMulti: any;
+   date_of_birth?: Date;
+   languages: string[];
 }
 
 function DemoForm() {
+   const [result, setResult] = useState<string>('');
    const formRHF = useForm<TFormData>({
       resolver: yupResolver(schema),
       defaultValues: {
+         //gender: 'male',
          selectOnly: { value: "", label: "--Tất cả--" },
          selectMulti: null,
-      }
+         date_of_birth: new Date(),
+      },
    })
 
    const onFormSubmit = (values: TFormData) => {
-      alert("---->Submit Form value: " + JSON.stringify(values));
+      setResult(JSON.stringify(values))
       formRHF.reset();
    }
 
@@ -90,9 +113,14 @@ function DemoForm() {
                isRequired
             />
 
-            <div>Radio Giới tính
-
-            </div>
+            <RadioButtons
+               formRHF={formRHF}
+               name='gender'
+               label="Giới tính"
+               isRequired
+               options={radioOptions}
+               isHorizontal
+            />
 
             <SelectBox
                formRHF={formRHF}
@@ -112,9 +140,21 @@ function DemoForm() {
                options={arrOptionsMulti}
             />
 
-            <div>DatePicker ngày sinh</div>
+            <DatePicker
+               formRHF={formRHF}
+               name='date_of_birth'
+               label="Ngày sinh"
+               isRequired
+            />
 
-            <div>Checkbox </div>
+            <Checkbox
+               formRHF={formRHF}
+               name='languages'
+               label="Ngôn ngữ"
+               isRequired
+               options={checkboxOptions}
+               isHorizontal
+            />
 
             <Button
                variant="contained"
@@ -126,6 +166,15 @@ function DemoForm() {
                LƯU
             </Button>
          </form>
+
+         {
+            result && <>
+               <br /><div>Kết quả:</div><br />
+               <div>
+                  {result}
+               </div>
+            </>
+         }
       </div>
    );
 }
